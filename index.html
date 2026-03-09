@@ -310,6 +310,122 @@ footer{background:var(--ink-soft);border-top:1px solid rgba(247,244,238,.052)}
 .flang{font-size:12px;color:rgba(247,244,238,.24);padding:3px 7px;border-radius:3px;border:1px solid rgba(247,244,238,.06);transition:all .2s}
 .flang:hover{color:var(--paper);border-color:rgba(247,244,238,.18)}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr;gap:32px}.footer-cols{grid-template-columns:repeat(2,1fr)}}
+
+/* ══ K2G SECTION ══ */
+.k2g-section{padding:96px 0 80px;background:var(--ink-soft);position:relative}
+.k2g-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,57,45,.3),transparent)}
+.k2g-section::after{content:'';position:absolute;right:-60px;top:40%;width:320px;height:320px;background:radial-gradient(circle,rgba(200,57,45,.055),transparent 65%);border-radius:50%;pointer-events:none}
+.see-all-k2g{color:var(--k2g);border-color:rgba(200,57,45,.3)}
+.see-all-k2g:hover{background:rgba(200,57,45,.09);border-color:var(--k2g)}
+/* K2G vertical feed */
+.k2g-feed{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:1}
+@media(max-width:1100px){.k2g-feed{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.k2g-feed{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.k2g-feed{grid-template-columns:1fr}}
+/* K2G card — vertical short-form style */
+.k2g-card{background:rgba(13,17,23,.6);border:1px solid rgba(247,244,238,.07);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
+.k2g-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.38);border-color:rgba(247,244,238,.13)}
+/* Media area */
+.k2g-media{position:relative;width:100%;aspect-ratio:9/16;background:rgba(22,30,44,.8);overflow:hidden;flex-shrink:0}
+.k2g-media-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px}
+.k2g-media-gradient{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,17,23,0) 30%,rgba(13,17,23,.92) 100%)}
+/* Video/image badge */
+.k2g-type-badge{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.6px;padding:3px 8px;border-radius:3px;backdrop-filter:blur(4px)}
+.k2g-type-video{background:rgba(200,57,45,.25);color:#ff8080;border:1px solid rgba(200,57,45,.35)}
+.k2g-type-image{background:rgba(91,127,166,.25);color:#aac8f0;border:1px solid rgba(91,127,166,.35)}
+.k2g-type-embed{background:rgba(184,134,11,.22);color:var(--gold-light);border:1px solid rgba(184,134,11,.32)}
+/* Duration */
+.k2g-duration{position:absolute;bottom:68px;right:10px;font-size:10px;font-weight:700;color:rgba(255,255,255,.65);background:rgba(0,0,0,.55);padding:2px 6px;border-radius:3px;backdrop-filter:blur(4px)}
+/* Creator overlay on media */
+.k2g-creator-overlay{position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;display:flex;align-items:flex-end;gap:0}
+.k2g-creator-ava{width:30px;height:30px;border-radius:50%;background:rgba(200,57,45,.3);border:1.5px solid rgba(200,57,45,.6);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-right:8px}
+.k2g-creator-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.9);line-height:1.2}
+.k2g-creator-grade{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.2px}
+/* Card body */
+.k2g-card-body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.k2g-cat-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+.k2g-title{font-size:13px;font-weight:600;color:var(--paper);line-height:1.42;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.k2g-caption{font-size:11px;line-height:1.52;color:rgba(247,244,238,.46);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* Card actions */
+.k2g-card-actions{display:flex;align-items:center;gap:0;margin-top:auto;padding-top:8px;border-top:1px solid rgba(247,244,238,.055)}
+.k2g-stat{display:flex;align-items:center;gap:4px;font-size:11px;color:rgba(247,244,238,.3);padding-right:10px;margin-right:10px;border-right:1px solid rgba(247,244,238,.055)}
+.k2g-stat:last-of-type{border-right:none}
+.k2g-subscribe-btn{margin-left:auto;font-size:11px;font-weight:600;color:var(--vermillion);border:1px solid rgba(200,57,45,.35);padding:3px 10px;border-radius:12px;transition:all .2s;background:rgba(200,57,45,.06)}
+.k2g-subscribe-btn:hover,.k2g-subscribe-btn.subbed{background:var(--vermillion);color:var(--paper);border-color:var(--vermillion)}
+/* Ask in G2K link */
+.k2g-ask-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:rgba(42,107,138,.75);padding:2px 0;border-bottom:1px solid rgba(42,107,138,.2);transition:all .2s;margin-top:2px}
+.k2g-ask-link:hover{color:var(--g2k);border-color:var(--g2k)}
+
+/* K2G modal */
+.k2g-modal{background:var(--ink-soft);border:1px solid rgba(247,244,238,.08);border-radius:14px;width:100%;max-width:520px;margin:auto;overflow:hidden;animation:fadeUp .3s cubic-bezier(.22,1,.36,1)}
+.k2g-modal-media{aspect-ratio:9/16;max-height:420px;background:rgba(13,17,23,.75);display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.k2g-modal-media-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(13,17,23,.9))}
+.k2g-play-btn{position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(200,57,45,.85);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid rgba(255,255,255,.2);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.k2g-play-btn:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(200,57,45,.4)}
+.k2g-modal-body{padding:18px 20px}
+.k2g-modal-creator{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.055)}
+.k2g-modal-ava{width:40px;height:40px;border-radius:50%;background:rgba(200,57,45,.25);border:2px solid rgba(200,57,45,.5);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.k2g-modal-creator-name{font-size:14px;font-weight:600;color:var(--paper)}
+.k2g-modal-creator-grade{font-size:11px;color:rgba(247,244,238,.4)}
+.k2g-modal-sub-btn{margin-left:auto;font-size:12px;font-weight:700;color:var(--vermillion);border:1px solid rgba(200,57,45,.4);padding:5px 14px;border-radius:16px;transition:all .2s;background:rgba(200,57,45,.07)}
+.k2g-modal-sub-btn:hover,.k2g-modal-sub-btn.subbed{background:var(--vermillion);color:var(--paper);border-color:var(--vermillion)}
+.k2g-modal-title{font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--paper);line-height:1.25;margin-bottom:10px;letter-spacing:-.2px}
+.k2g-modal-caption{font-size:14px;line-height:1.7;color:rgba(247,244,238,.65);margin-bottom:14px}
+.k2g-modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.k2g-modal-tag{font-size:11px;color:rgba(247,244,238,.36);background:rgba(247,244,238,.04);border:1px solid rgba(247,244,238,.07);padding:3px 9px;border-radius:12px}
+.k2g-modal-ask{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:rgba(42,107,138,.8);border:1px solid rgba(42,107,138,.25);padding:6px 12px;border-radius:4px;transition:all .2s;margin-bottom:16px}
+.k2g-modal-ask:hover{background:rgba(42,107,138,.1);border-color:var(--g2k);color:var(--g2k)}
+/* Comments */
+.k2g-comments{border-top:1px solid rgba(255,255,255,.055);padding-top:14px}
+.k2g-comments-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.k2g-comments-title{font-size:13px;font-weight:600;color:var(--paper)}
+.k2g-comment-policy{font-size:10px;color:rgba(247,244,238,.3);letter-spacing:.3px}
+.k2g-comment{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:8px}
+.k2g-comment:last-child{border-bottom:none}
+.k2g-comment-ava{width:24px;height:24px;border-radius:50%;background:var(--ink-muted);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.k2g-comment-body{flex:1}
+.k2g-comment-author{font-size:11px;font-weight:600;color:var(--paper);margin-bottom:2px;display:flex;align-items:center;gap:6px}
+.k2g-comment-grade{font-size:10px;color:rgba(247,244,238,.32);font-weight:400}
+.k2g-comment-text{font-size:12px;line-height:1.52;color:rgba(247,244,238,.58)}
+.k2g-comment-note{font-size:10px;color:rgba(247,244,238,.22);margin-top:6px;font-style:italic}
+/* No reply badge */
+.no-reply-badge{font-size:10px;color:rgba(247,244,238,.22);border:1px solid rgba(247,244,238,.07);padding:1px 6px;border-radius:3px;margin-left:auto}
+
+/* ══ COMING SOON MODAL ══ */
+.cs-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(5,8,15,.88);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px}
+.cs-overlay.open{display:flex}
+.cs-modal{background:var(--ink-soft);border:1px solid rgba(247,244,238,.08);border-radius:20px;width:100%;max-width:440px;padding:48px 40px 40px;text-align:center;position:relative;animation:fadeUp .35s cubic-bezier(.22,1,.36,1);overflow:hidden}
+.cs-modal::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:200px;height:200px;border-radius:50%;filter:blur(60px);opacity:.3}
+.cs-modal-gada::before{background:var(--gada)}
+.cs-modal-shim::before{background:var(--shim)}
+.cs-icon{font-size:52px;margin-bottom:16px;line-height:1;position:relative}
+.cs-section-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:20px}
+.cs-tag-gada{color:var(--gold-light);background:rgba(184,134,11,.1);border:1px solid rgba(184,134,11,.22)}
+.cs-tag-shim{color:#7EC9A0;background:rgba(58,122,92,.1);border:1px solid rgba(58,122,92,.22)}
+.cs-title{font-family:var(--font-display);font-size:28px;font-weight:400;color:var(--paper);line-height:1.18;letter-spacing:-.3px;margin-bottom:10px}
+.cs-subtitle{font-size:14px;color:rgba(247,244,238,.45);line-height:1.62;margin-bottom:28px;max-width:320px;margin-left:auto;margin-right:auto}
+/* Progress dots */
+.cs-progress{display:flex;justify-content:center;gap:8px;margin-bottom:24px}
+.cs-prog-dot{width:8px;height:8px;border-radius:50%;background:rgba(247,244,238,.12)}
+.cs-prog-dot.active{background:var(--cs-dot-color);width:24px;border-radius:4px}
+/* Notify form */
+.cs-notify{display:flex;gap:8px;margin-bottom:20px}
+.cs-notify-input{flex:1;background:rgba(13,17,23,.6);border:1px solid rgba(247,244,238,.1);border-radius:6px;padding:9px 14px;font-size:13px;color:var(--paper);font-family:var(--font-sans);outline:none;transition:border-color .2s}
+.cs-notify-input::placeholder{color:rgba(247,244,238,.28)}
+.cs-notify-input:focus{border-color:rgba(247,244,238,.25)}
+.cs-notify-btn{font-size:13px;font-weight:600;padding:9px 18px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.cs-btn-gada{background:var(--gold-light);color:var(--ink)}
+.cs-btn-gada:hover{background:#f0d060;box-shadow:0 4px 14px rgba(184,134,11,.38)}
+.cs-btn-shim{background:#3A7A5C;color:var(--paper)}
+.cs-btn-shim:hover{background:#45906e;box-shadow:0 4px 14px rgba(58,122,92,.38)}
+.cs-close{position:absolute;top:16px;right:16px;font-size:16px;color:rgba(247,244,238,.28);padding:6px;border-radius:6px;transition:color .2s;cursor:pointer}
+.cs-close:hover{color:var(--paper)}
+.cs-back-link{font-size:12px;color:rgba(247,244,238,.3);transition:color .2s;cursor:pointer;display:inline-block}
+.cs-back-link:hover{color:rgba(247,244,238,.7)}
+/* Decorative lines */
+.cs-modal-line{position:absolute;height:1px;opacity:.08}
+.cs-modal-line-t{top:0;left:0;right:0;background:linear-gradient(90deg,transparent,var(--cs-line-color),transparent)}
+.cs-modal-line-b{bottom:0;left:0;right:0;background:linear-gradient(90deg,transparent,var(--cs-line-color),transparent)}
 </style>
 </head>
 <body>
@@ -483,7 +599,32 @@ footer{background:var(--ink-soft);border-top:1px solid rgba(247,244,238,.052)}
   </div>
 </section>
 
-<!-- ═══ GADA ═══ -->
+<!-- ═══ K2G FEED ═══ -->
+<section class="k2g-section" id="k2g">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="sec-label" id="k2g-label">K2G · Korean → Global</span>
+        <h2 id="k2g-h">Koreans Explain Korea</h2>
+        <p id="k2g-sub">Short explainers. Korean perspective. Culture, history, and everyday life — from the inside.</p>
+      </div>
+      <a href="#k2g-all" class="see-all see-all-k2g" id="k2g-see">See all →</a>
+    </div>
+    <!-- K2G category pills -->
+    <div class="cat-pills" id="k2g-cats">
+      <button class="cat-pill active" onclick="filterK2G(this,'all')" id="k2g-cat-all">All</button>
+      <button class="cat-pill" onclick="filterK2G(this,'culture')">🎎 Culture</button>
+      <button class="cat-pill" onclick="filterK2G(this,'society')">🏛 Society</button>
+      <button class="cat-pill" onclick="filterK2G(this,'history')">📜 History</button>
+      <button class="cat-pill" onclick="filterK2G(this,'kpop')">🎵 K-Pop</button>
+      <button class="cat-pill" onclick="filterK2G(this,'life')">🌱 Life</button>
+    </div>
+    <!-- K2G vertical feed grid -->
+    <div class="k2g-feed" id="k2g-feed"></div>
+  </div>
+</section>
+
+<!-- ═══ GADA (Coming Soon) ═══ -->
 <section class="gada-section" id="gada">
   <div class="container">
     <div class="gada-grid">
@@ -499,17 +640,17 @@ footer{background:var(--ink-soft);border-top:1px solid rgba(247,244,238,.052)}
         </div>
         <p class="gada-desc" id="gada-desc">Narrative-based cultural programs. Thematic experiences. Story-driven routes.<br>Real places, verified curation — not a listing.</p>
         <div class="gada-types" id="gada-types"></div>
-        <a href="#gada-browse" class="gada-cta">
+        <button class="gada-cta" onclick="openComingSoon('gada')">
           <span id="gada-cta">Browse Programs</span>
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        </button>
       </div>
-      <div class="gada-cards" id="gada-cards"></div>
+      <div class="gada-cards" id="gada-cards" onclick="openComingSoon('gada')"></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ SHIM ═══ -->
+<!-- ═══ SHIM (Coming Soon) ═══ -->
 <section class="shim-section" id="shim">
   <div class="container">
     <div class="shim-intro">
@@ -518,7 +659,7 @@ footer{background:var(--ink-soft);border-top:1px solid rgba(247,244,238,.052)}
       <p style="font-size:15px;color:rgba(247,244,238,.48);line-height:1.65;margin-bottom:16px" id="shim-sub">Four editorial picks per month. Not a listing — a curation. Trust over volume.</p>
       <span class="shim-rule" id="shim-rule">"GaDa goes somewhere. SHIM rests somewhere."</span>
     </div>
-    <div class="shim-grid" id="shim-grid"></div>
+    <div class="shim-grid" id="shim-grid" onclick="openComingSoon('shim')" style="cursor:pointer"></div>
     <p class="shim-month-note" id="shim-note">Updated every 1st of the month · 매월 1일 업데이트</p>
   </div>
 </section>
@@ -577,9 +718,38 @@ footer{background:var(--ink-soft);border-top:1px solid rgba(247,244,238,.052)}
   </div>
 </footer>
 
-<!-- ═══ POST MODAL ═══ -->
+<!-- ═══ POST MODAL (G2K) ═══ -->
 <div class="overlay" id="overlay" onclick="closePost(event)">
   <div class="modal" id="modal"></div>
+</div>
+
+<!-- ═══ K2G MODAL ═══ -->
+<div class="overlay" id="k2g-overlay" onclick="closeK2G(event)">
+  <div class="k2g-modal" id="k2g-modal"></div>
+</div>
+
+<!-- ═══ COMING SOON MODAL ═══ -->
+<div class="cs-overlay" id="cs-overlay" onclick="closeCS(event)">
+  <div class="cs-modal" id="cs-modal">
+    <div class="cs-modal-line cs-modal-line-t"></div>
+    <div class="cs-modal-line cs-modal-line-b"></div>
+    <button class="cs-close" onclick="closeCS()">✕</button>
+    <div class="cs-icon" id="cs-icon">🗺</div>
+    <div class="cs-section-tag" id="cs-tag">GaDa</div>
+    <h2 class="cs-title" id="cs-title">Coming Soon</h2>
+    <p class="cs-subtitle" id="cs-subtitle">We're preparing something beautiful.</p>
+    <div class="cs-progress">
+      <div class="cs-prog-dot"></div>
+      <div class="cs-prog-dot active" id="cs-dot-active"></div>
+      <div class="cs-prog-dot"></div>
+      <div class="cs-prog-dot"></div>
+    </div>
+    <div class="cs-notify">
+      <input class="cs-notify-input" type="email" id="cs-email" placeholder="your@email.com" />
+      <button class="cs-notify-btn" id="cs-notify-btn" onclick="submitNotify()">Notify Me</button>
+    </div>
+    <button class="cs-back-link" onclick="closeCS()" id="cs-back">← Back to K-Agora</button>
+  </div>
 </div>
 
 <script>
@@ -653,6 +823,63 @@ const SHIM_CARDS=[
   {emoji:'🌿',type_en:'Hidden',type_ko:'숨겨진',title_en:'Namhae German Village Retreat',title_ko:'남해 독일마을 리트릿',loc_en:'Namhae, South Coast',loc_ko:'남해',tags_en:['#hidden','#unique','#retreat'],tags_ko:['#숨겨진','#유니크','#리트릿']},
 ];
 
+const K2G_POSTS=[
+  {id:101,cat:'culture',catLabel:'Culture',
+   creator:'MinJun_K',creator_flag:'🇰🇷',creator_grade:'Korean Ambassador',creator_ava:'🎎',
+   type:'video',duration:'0:58',media_bg:'linear-gradient(135deg,#1a0a2e,#2d1b4e)',media_emoji:'🎎',
+   title_en:'Why Koreans bow — and when not to',
+   title_ko:'한국인이 절하는 이유 — 그리고 하지 말아야 할 때',
+   caption_en:"Bowing in Korea isn't just politeness — it's a whole grammar of respect. The angle, the duration, who goes first. Let me break it down.",
+   caption_ko:"한국에서 인사는 단순한 예의가 아닙니다 — 존중의 문법입니다. 각도, 시간, 누가 먼저. 설명해드리겠습니다.",
+   tags_en:['#etiquette','#culture','#hierarchy'],tags_ko:['#예절','#문화','#위계'],
+   likes:1240,comments_count:34,
+   comments:[
+     {flag:'🇺🇸',name:'Jake_Boston',grade:'Citizen 🇺🇸',text_en:"Fascinating — so the 90-degree bow is only for formal occasions?",text_ko:"매력적입니다 — 90도 인사는 공식적인 자리에서만?"},
+     {flag:'🇩🇪',name:'HannaM',grade:'Citizen 🇩🇪',text_en:"I made an awkward bow to my Korean colleague last week. Now I understand why it was weird.",text_ko:"지난 주 한국인 동료에게 어색하게 절했습니다. 이제 왜 이상했는지 이해합니다."},
+     {flag:'🇧🇷',name:'CarlosR',grade:'Newbie',text_en:"Does bowing apply differently between same-age peers?",text_ko:"동갑끼리는 다르게 적용되나요?"},
+   ]},
+  {id:102,cat:'history',catLabel:'History',
+   creator:'SunYi_Seoul',creator_flag:'🇰🇷',creator_grade:'Korean Ambassador',creator_ava:'📜',
+   type:'image',duration:null,media_bg:'linear-gradient(135deg,#0d1f2d,#1a3a2a)',media_emoji:'🏯',
+   title_en:"The Joseon Dynasty in 60 seconds",
+   title_ko:'60초로 보는 조선왕조',
+   caption_en:"500 years. 27 kings. Confucian governance that shaped everything from family structure to education to the calendar. Here's what you actually need to know.",
+   caption_ko:"500년. 27명의 왕. 가족 구조부터 교육, 달력까지 모든 것을 형성한 유교 통치. 실제로 알아야 할 것들입니다.",
+   tags_en:['#history','#joseon','#dynasty'],tags_ko:['#역사','#조선','#왕조'],
+   likes:892,comments_count:21,
+   comments:[
+     {flag:'🇬🇧',name:'LondonMark',grade:'Citizen 🇬🇧',text_en:"This is exactly the context I was missing for understanding K-dramas.",text_ko:"K-드라마를 이해하는 데 필요했던 맥락이 바로 이것입니다."},
+     {flag:'🇫🇷',name:'ChloeP',grade:'Citizen 🇫🇷',text_en:"The Confucian influence is so visible even in modern Korean society — great explainer.",text_ko:"유교적 영향은 현대 한국 사회에서도 분명히 보입니다 — 훌륭한 설명입니다."},
+   ]},
+  {id:103,cat:'life',catLabel:'Life',
+   creator:'JiYeon_Busan',creator_flag:'🇰🇷',creator_grade:'Korean Ambassador',creator_ava:'🌱',
+   type:'video',duration:'0:45',media_bg:'linear-gradient(135deg,#0f1f0a,#1a2e10)',media_emoji:'🍱',
+   title_en:"What Koreans actually eat for breakfast",
+   title_ko:'한국인이 실제로 아침에 먹는 것',
+   caption_en:"Not ramen. Not always rice either. Korean breakfast is more varied than people think — from doenjang jjigae to toast from a street cart.",
+   caption_ko:"라면이 아닙니다. 항상 밥도 아닙니다. 한국 아침식사는 사람들이 생각하는 것보다 다양합니다 — 된장찌개부터 길거리 토스트까지.",
+   tags_en:['#food','#dailylife','#hansik'],tags_ko:['#음식','#일상','#한식'],
+   likes:2105,comments_count:67,
+   comments:[
+     {flag:'🇯🇵',name:'YukiT',grade:'Citizen 🇯🇵',text_en:"The toast cart culture was surprising! We have similar morning food culture here.",text_ko:"토스트 카트 문화는 놀라웠습니다! 여기도 비슷한 아침 음식 문화가 있습니다."},
+     {flag:'🇺🇸',name:'SarahNY',grade:'Citizen 🇺🇸',text_en:"So Korean breakfast is actually quite different depending on the person?",text_ko:"한국 아침식사는 사람에 따라 꽤 다른가요?"},
+     {flag:'🇮🇳',name:'PriyaM',grade:'Citizen 🇮🇳',text_en:"Love how food culture tells so much about daily life structure.",text_ko:"음식 문화가 일상 구조에 대해 얼마나 많은 것을 알려주는지 좋아합니다."},
+   ]},
+  {id:104,cat:'society',catLabel:'Society',
+   creator:'TaeHoK',creator_flag:'🇰🇷',creator_grade:'Korean Ambassador',creator_ava:'🏛',
+   type:'video',duration:'1:00',media_bg:'linear-gradient(135deg,#1a1a2e,#16213e)',media_emoji:'🎓',
+   title_en:"Why Korean students study so much",
+   title_ko:'한국 학생들이 왜 그렇게 공부를 많이 하는가',
+   caption_en:"The answer isn't just culture. It's economics, Confucian values, demographic pressure, and a single exam that can define your life. The 수능 explained.",
+   caption_ko:"답은 문화만이 아닙니다. 경제, 유교 가치, 인구 압력, 그리고 삶을 결정할 수 있는 하나의 시험 — 수능 설명.",
+   tags_en:['#education','#society','#suneung'],tags_ko:['#교육','#사회','#수능'],
+   likes:3420,comments_count:112,
+   comments:[
+     {flag:'🇨🇳',name:'WeiL',grade:'Citizen 🇨🇳',text_en:"Gaokao in China has similar pressure. The system-level explanation here is really good.",text_ko:"중국의 가오카오도 비슷한 압박이 있습니다. 시스템 수준의 설명이 정말 좋습니다."},
+     {flag:'🇫🇷',name:'TheoB',grade:'Citizen 🇫🇷',text_en:"The economic framing is really key. It's not just 'Koreans work hard' — there's a structural reason.",text_ko:"경제적 구도가 정말 핵심입니다. '한국인이 열심히 한다'가 아니라 구조적 이유가 있습니다."},
+   ]},
+];
+
 /* ══ LANG ══ */
 let lang='en';
 function toggleLang(){setLang(lang==='en'?'ko':'en')}
@@ -660,7 +887,7 @@ function setLang(l){
   lang=l;
   document.getElementById('en-lbl').className=l==='en'?'act':'';
   document.getElementById('ko-lbl').className=l==='ko'?'act':'';
-  updateText();renderG2K();renderGaDa();renderShim();renderEvSteps();renderFooter();
+  updateText();renderG2K();renderK2G();renderGaDa();renderShim();renderEvSteps();renderFooter();
 }
 
 function t(en,ko){return lang==='en'?en:ko}
@@ -728,6 +955,12 @@ function updateText(){
   document.getElementById('ft-claim').textContent=t('Not AI. Not tourism. Real Korea.','AI 아님. 관광 아님. 진짜 한국.');
   document.getElementById('nav-signin').textContent=t('Sign In','로그인');
   document.getElementById('nav-join').textContent=t('Join','가입');
+  // K2G
+  document.getElementById('k2g-label').textContent=t('K2G · Korean → Global','K2G · 한국인 → 글로벌');
+  document.getElementById('k2g-h').textContent=t('Koreans Explain Korea','한국인이 한국을 설명한다');
+  document.getElementById('k2g-sub').textContent=t('Short explainers. Korean perspective. Culture, history, and everyday life — from the inside.','짧은 설명. 한국인의 시각. 문화, 역사, 일상 — 내부에서.');
+  document.getElementById('k2g-see').textContent=t('See all →','전체 보기 →');
+  document.getElementById('k2g-cat-all').textContent=t('All','전체');
 }
 
 /* ══ CATEGORY COLOR ══ */
@@ -736,7 +969,7 @@ function catColor(cat){return{culture:'#E6C55A',society:'#6BC4E8',history:'#C8B8
 /* ══ G2K FEED ══ */
 let currentCat='all';
 function filterCat(el,cat){
-  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#g2k-cats .cat-pill').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');currentCat=cat;renderG2K();
 }
 function renderG2K(){
@@ -765,6 +998,168 @@ function renderG2K(){
         </div>
       </div>
     </article>`).join('');
+}
+
+/* ══ K2G FEED ══ */
+let k2gCat='all';
+let subState={};
+function filterK2G(el,cat){
+  document.querySelectorAll('#k2g-cats .cat-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');k2gCat=cat;renderK2G();
+}
+function renderK2G(){
+  const e=lang==='en';
+  const posts=k2gCat==='all'?K2G_POSTS:K2G_POSTS.filter(p=>p.cat===k2gCat);
+  if(!posts.length){document.getElementById('k2g-feed').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:rgba(247,244,238,.3);font-size:14px">'+(e?'No content in this category.':'이 카테고리에 콘텐츠가 없습니다.')+'</div>';return}
+  document.getElementById('k2g-feed').innerHTML=posts.map(p=>{
+    const isSubbed=subState[p.creator]||false;
+    const typeBadge=p.type==='video'
+      ?`<span class="k2g-type-badge k2g-type-video">▶ VIDEO ${p.duration?'· '+p.duration:''}</span>`
+      :`<span class="k2g-type-badge k2g-type-image">🖼 IMAGE</span>`;
+    return`<div class="k2g-card" onclick="openK2G(${p.id})">
+      <div class="k2g-media" style="background:${p.media_bg}">
+        <div class="k2g-media-bg">${p.media_emoji}</div>
+        <div class="k2g-media-gradient"></div>
+        ${typeBadge}
+        ${p.type==='video'?`<div class="k2g-duration">${p.duration}</div>`:''}
+        <div class="k2g-creator-overlay">
+          <div class="k2g-creator-ava">${p.creator_flag}</div>
+          <div><div class="k2g-creator-name">${p.creator}</div><div class="k2g-creator-grade">${p.creator_grade}</div></div>
+        </div>
+      </div>
+      <div class="k2g-card-body">
+        <span class="k2g-cat-tag" style="color:${catColor(p.cat)}">${p.catLabel}</span>
+        <h3 class="k2g-title">${e?p.title_en:p.title_ko}</h3>
+        <p class="k2g-caption">${e?p.caption_en:p.caption_ko}</p>
+        <div class="k2g-card-actions">
+          <span class="k2g-stat">♥ ${(p.likes/1000).toFixed(1)}k</span>
+          <span class="k2g-stat">💬 ${p.comments_count}</span>
+          <button class="k2g-subscribe-btn${isSubbed?' subbed':''}" onclick="event.stopPropagation();toggleSub('${p.creator}',this)">${isSubbed?(e?'Following':'팔로잉'):(e?'Follow':'팔로우')}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleSub(creator,btn){
+  subState[creator]=!subState[creator];
+  const e=lang==='en';
+  btn.classList.toggle('subbed',subState[creator]);
+  btn.textContent=subState[creator]?(e?'Following':'팔로잉'):(e?'Follow':'팔로우');
+}
+
+/* ══ K2G MODAL ══ */
+function openK2G(id){
+  const p=K2G_POSTS.find(x=>x.id===id);if(!p)return;
+  const e=lang==='en';
+  const isSubbed=subState[p.creator]||false;
+  document.getElementById('k2g-modal').innerHTML=`
+    <div style="position:relative">
+      <div class="k2g-modal-media" style="background:${p.media_bg}">
+        ${p.media_emoji}
+        <div class="k2g-modal-media-grad"></div>
+        ${p.type==='video'?`<div class="k2g-play-btn">▶</div>`:''}
+      </div>
+      <button style="position:absolute;top:12px;right:12px;font-size:16px;color:rgba(255,255,255,.5);background:rgba(0,0,0,.4);border:none;border-radius:6px;padding:5px 9px;cursor:pointer;backdrop-filter:blur(4px)" onclick="closeK2G()">✕</button>
+    </div>
+    <div class="k2g-modal-body">
+      <div class="k2g-modal-creator">
+        <div class="k2g-modal-ava">${p.creator_flag}</div>
+        <div><div class="k2g-modal-creator-name">${p.creator} <span style="font-size:11px;color:rgba(247,244,238,.4)">${p.creator_flag}</span></div>
+        <div class="k2g-modal-creator-grade">${p.creator_grade}</div></div>
+        <button class="k2g-modal-sub-btn${isSubbed?' subbed':''}" onclick="toggleSub('${p.creator}',this)">${isSubbed?(e?'Following':'팔로잉'):(e?'Follow':'팔로우')}</button>
+      </div>
+      <h2 class="k2g-modal-title">${e?p.title_en:p.title_ko}</h2>
+      <p class="k2g-modal-caption">${e?p.caption_en:p.caption_ko}</p>
+      <div class="k2g-modal-tags">${(e?p.tags_en:p.tags_ko).map(tg=>`<span class="k2g-modal-tag">${tg}</span>`).join('')}</div>
+      <a href="#g2k" class="k2g-modal-ask" onclick="closeK2G()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 4v2.5M6 8h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        ${e?'Have a deeper question? Ask in G2K':'더 깊은 질문이 있으신가요? G2K에서 물어보세요'}
+      </a>
+      <div class="k2g-comments">
+        <div class="k2g-comments-hdr">
+          <span class="k2g-comments-title">${e?`Comments (${p.comments_count})`:`댓글 (${p.comments_count})`}</span>
+          <span class="k2g-comment-policy">${e?'No replies · Reactions only':'대댓글 없음 · 반응만'}</span>
+        </div>
+        ${p.comments.map(c=>`
+          <div class="k2g-comment">
+            <div class="k2g-comment-ava">${c.flag}</div>
+            <div class="k2g-comment-body">
+              <div class="k2g-comment-author">${c.name} <span class="k2g-comment-grade">${c.grade}</span><span class="no-reply-badge">${e?'no reply':'답글없음'}</span></div>
+              <p class="k2g-comment-text">${e?c.text_en:c.text_ko}</p>
+            </div>
+          </div>`).join('')}
+        <p class="k2g-comment-note">${e?'Comments are single-level only. No nested replies.':'댓글은 단일 레벨만 허용됩니다. 대댓글 없음.'}</p>
+      </div>
+    </div>`;
+  document.getElementById('k2g-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeK2G(ev){
+  if(!ev||ev.target===document.getElementById('k2g-overlay')){
+    document.getElementById('k2g-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+
+/* ══ COMING SOON MODAL ══ */
+const CS_CONFIG={
+  gada:{
+    icon:'🗺',
+    tag_en:'GaDa · 가다',tag_ko:'가다 · GaDa',
+    tag_class:'cs-tag-gada',modal_class:'cs-modal-gada',
+    title_en:'GaDa is Coming',title_ko:'가다, 곧 옵니다',
+    sub_en:"Narrative routes, cultural programs, and story-driven experiences across Korea.\nWe're hand-curating every single one.",
+    sub_ko:"내러티브 루트, 문화 프로그램, 한국 전역의 이야기 중심 경험.\n하나하나 직접 큐레이션하고 있습니다.",
+    btn_class:'cs-btn-gada',
+    dot_color:'#E6C55A',line_color:'#B8660B',
+  },
+  shim:{
+    icon:'🌿',
+    tag_en:'SHIM · 쉼',tag_ko:'쉼 · SHIM',
+    tag_class:'cs-tag-shim',modal_class:'cs-modal-shim',
+    title_en:'SHIM is Coming',title_ko:'쉼, 곧 옵니다',
+    sub_en:"Four editorial rest picks per month. Forest, sea, city, hidden.\nWe open only when we're certain every pick is right.",
+    sub_ko:"매월 4개의 에디토리얼 휴식 픽. 숲, 바다, 도시, 숨겨진 곳.\n모든 픽이 확실할 때만 오픈합니다.",
+    btn_class:'cs-btn-shim',
+    dot_color:'#7EC9A0',line_color:'#3A7A5C',
+  }
+};
+function openComingSoon(section){
+  const c=CS_CONFIG[section];const e=lang==='en';
+  const modal=document.getElementById('cs-modal');
+  modal.className=`cs-modal ${c.modal_class}`;
+  document.getElementById('cs-icon').textContent=c.icon;
+  const tag=document.getElementById('cs-tag');
+  tag.textContent=e?c.tag_en:c.tag_ko;
+  tag.className=`cs-section-tag ${c.tag_class}`;
+  document.getElementById('cs-title').textContent=e?c.title_en:c.title_ko;
+  document.getElementById('cs-subtitle').innerHTML=(e?c.sub_en:c.sub_ko).replace('\n','<br>');
+  document.getElementById('cs-dot-active').style.background=c.dot_color;
+  document.getElementById('cs-notify-btn').className=`cs-notify-btn ${c.btn_class}`;
+  document.getElementById('cs-notify-btn').textContent=e?'Notify Me':'알림 받기';
+  document.getElementById('cs-email').placeholder=e?'your@email.com':'이메일 주소';
+  document.getElementById('cs-back').textContent=e?'← Back to K-Agora':'← K-Agora로 돌아가기';
+  // set CSS vars for decorative lines
+  modal.style.setProperty('--cs-line-color',c.line_color);
+  document.querySelectorAll('.cs-modal-line').forEach(l=>l.style.background=`linear-gradient(90deg,transparent,${c.line_color},transparent)`);
+  document.getElementById('cs-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCS(ev){
+  if(!ev||ev.target===document.getElementById('cs-overlay')){
+    document.getElementById('cs-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+function submitNotify(){
+  const inp=document.getElementById('cs-email');
+  const btn=document.getElementById('cs-notify-btn');
+  const e=lang==='en';
+  if(!inp.value.includes('@')){inp.style.borderColor='rgba(200,57,45,.5)';return;}
+  inp.style.borderColor='rgba(91,158,138,.5)';
+  btn.textContent=e?'✓ Registered!':'✓ 등록완료!';
+  btn.style.background='var(--celadon)';btn.style.color='var(--ink)';
+  inp.value='';inp.disabled=true;btn.disabled=true;
 }
 
 /* ══ GaDa ══ */
@@ -880,7 +1275,7 @@ window.addEventListener('scroll',()=>{
 });
 
 /* ══ INIT ══ */
-renderG2K();renderGaDa();renderShim();renderEvSteps();renderFooter();updateText();
+renderG2K();renderK2G();renderGaDa();renderShim();renderEvSteps();renderFooter();updateText();
 </script>
 </body>
 </html>
