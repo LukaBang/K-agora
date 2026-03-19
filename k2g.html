@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>K2G — Koreans Explain Korea · K-Agora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   K-AGORA · K2G PAGE
+   Design: Cinematic dark + vermillion
+   Vertical short-form explainer feed
+   ═══════════════════════════════════════ */
+:root{
+  --ink:   #07090F;
+  --ink-b: #0C1018;
+  --ink-c: #121824;
+  --ink-d: #1A2232;
+  --paper: #F2EFE8;
+  --p72:   rgba(242,239,232,.72);
+  --p55:   rgba(242,239,232,.55);
+  --p35:   rgba(242,239,232,.35);
+  --p18:   rgba(242,239,232,.18);
+  --p08:   rgba(242,239,232,.08);
+  --p04:   rgba(242,239,232,.04);
+  --red:   #C8392D;
+  --red-b: rgba(200,57,45,.18);
+  --red-c: rgba(200,57,45,.08);
+  --red-d: rgba(200,57,45,.35);
+  --g2k:   #2A6B8A;
+  --teal:  #5B9E8A;
+  --gold:  #E6C55A;
+  --fd:    'DM Serif Display','Noto Serif KR',Georgia,serif;
+  --fk:    'Noto Serif KR',Georgia,serif;
+  --fs:    'DM Sans',system-ui,sans-serif;
+  --nav-h: 58px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fs);
+  background:var(--ink);
+  color:var(--paper);
+  min-height:100dvh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(200,57,45,.45)}70%{box-shadow:0 0 0 10px rgba(200,57,45,0)}100%{box-shadow:0 0 0 0 rgba(200,57,45,0)}}
+@keyframes play-bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:200;
+  height:var(--nav-h);display:flex;align-items:center;
+  padding:0 28px;
+  background:rgba(7,9,15,.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--p08);
+}
+.nav-inner{display:flex;align-items:center;width:100%;max-width:1360px;margin:0 auto}
+.logo{display:flex;align-items:baseline;gap:1px;flex-shrink:0;margin-right:24px}
+.logo-k{font-family:var(--fd);font-size:20px;font-weight:700;color:var(--red);letter-spacing:-.8px}
+.logo-sep{font-family:var(--fd);font-size:14px;color:var(--ink-d);margin:0 2px}
+.logo-n{font-family:var(--fd);font-size:16px;font-weight:400;color:var(--paper)}
+.nav-crumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--p35)}
+.nav-crumb-sep{color:var(--p18)}
+.nav-crumb-cur{color:var(--red);font-weight:600;letter-spacing:.3px}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lang-sw{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:600;letter-spacing:.5px;color:var(--p35);padding:3px 9px;border-radius:20px;border:1px solid var(--p08);transition:border-color .2s}
+.lang-sw:hover{border-color:var(--p18)}
+.lang-sw .on{color:var(--paper)}
+.lsep{width:1px;height:8px;background:var(--p18);margin:0 2px}
+.btn-si{font-size:12.5px;font-weight:500;color:var(--p55);padding:5px 13px;border-radius:4px;border:1px solid var(--p08);transition:all .15s}
+.btn-si:hover{color:var(--paper);border-color:var(--p18)}
+/* Korean contributor CTA in nav */
+.btn-korean{
+  font-size:12px;font-weight:600;
+  color:var(--paper);background:var(--red);
+  padding:5px 14px;border-radius:4px;
+  display:flex;align-items:center;gap:5px;
+  transition:all .18s;
+}
+.btn-korean:hover{background:#d94035;box-shadow:0 3px 12px var(--red-d)}
+
+/* ═══════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;
+  padding:48px 0 40px;
+  border-bottom:1px solid var(--p08);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 75% 40%,rgba(200,57,45,.18) 0%,transparent 52%),
+    radial-gradient(ellipse at 15% 70%,rgba(120,20,15,.14) 0%,transparent 48%);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--p04) 1px,transparent 1px),linear-gradient(90deg,var(--p04) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+/* vertical scan line decoration */
+.hero-scanline{
+  position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(200,57,45,.013) 3px,rgba(200,57,45,.013) 4px);
+}
+.hero-inner{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:0 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.hero-left{}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:13px}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse-ring 2.2s ease infinite}
+.hero-h{font-family:var(--fd);font-size:clamp(34px,4vw,54px);font-weight:400;line-height:1.04;letter-spacing:-1.2px;color:var(--paper);margin-bottom:10px}
+.hero-h em{color:var(--red);font-style:italic}
+.hero-sub{font-size:15px;line-height:1.68;color:var(--p55);max-width:520px;margin-bottom:22px}
+.hero-stats{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hstat{display:flex;align-items:center;gap:7px}
+.hstat-n{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--paper)}
+.hstat-l{font-size:10px;color:var(--p35);letter-spacing:.4px;line-height:1.35;text-transform:uppercase}
+.hstat-div{width:1px;height:22px;background:var(--p08)}
+/* identity pillars */
+.hero-pillars{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
+.pillar{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:var(--p55);
+  padding:7px 14px;border-radius:6px;
+  border:1px solid var(--p08);background:var(--p04);
+}
+.pillar-icon{font-size:14px}
+.pillar-check{
+  margin-left:auto;width:16px;height:16px;border-radius:50%;
+  background:rgba(91,158,138,.18);border:1px solid rgba(91,158,138,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--teal);
+}
+/* deco */
+.hero-deco{position:absolute;right:3%;top:50%;transform:translateY(-50%);font-family:var(--fk);font-size:clamp(80px,11vw,155px);font-weight:700;color:rgba(200,57,45,.05);line-height:1;user-select:none;pointer-events:none;letter-spacing:-4px}
+
+/* ═══════════════════════════════════════
+   FEED CONTROLS
+   ═══════════════════════════════════════ */
+.controls{
+  max-width:1360px;margin:0 auto;padding:20px 28px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid var(--p08);
+}
+/* category pills */
+.cat-pills{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding-bottom:2px}
+.cat-pills::-webkit-scrollbar{display:none}
+.cpill{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:500;
+  padding:5px 13px;border-radius:20px;
+  border:1px solid var(--p08);color:var(--p55);
+  transition:all .16s;white-space:nowrap;
+}
+.cpill:hover{border-color:var(--p18);color:var(--paper)}
+.cpill.on{background:var(--red-c);border-color:var(--red-b);color:var(--paper)}
+/* view + sort */
+.controls-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sort-row{display:flex;align-items:center;gap:2px;background:var(--p04);border:1px solid var(--p08);border-radius:5px;padding:3px}
+.sort-btn{font-size:11.5px;font-weight:500;color:var(--p55);padding:4px 11px;border-radius:3px;transition:all .14s}
+.sort-btn.on{background:var(--ink-c);color:var(--paper)}
+/* following toggle */
+.follow-toggle{
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:500;color:var(--p55);
+  padding:5px 12px;border-radius:4px;
+  border:1px solid var(--p08);transition:all .16s;
+}
+.follow-toggle.on{background:var(--red-c);border-color:var(--red-b);color:var(--paper)}
+.follow-toggle:hover{border-color:var(--p18);color:var(--paper)}
+
+/* ═══════════════════════════════════════
+   FEED GRID
+   ═══════════════════════════════════════ */
+.feed-wrap{max-width:1360px;margin:0 auto;padding:24px 28px 48px}
+.feed-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+@media(max-width:1200px){.feed-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px) {.feed-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px) {.feed-grid{grid-template-columns:1fr}}
+
+/* ── K2G Card ── */
+.kcard{
+  background:var(--ink-b);
+  border:1px solid var(--p08);
+  border-radius:12px;overflow:hidden;
+  cursor:pointer;
+  display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  animation:fadeUp .36s ease both;
+}
+.kcard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 36px rgba(0,0,0,.4);
+  border-color:var(--p18);
+}
+/* ── 9:16 media area ── */
+.km{
+  position:relative;
+  width:100%;aspect-ratio:9/16;
+  overflow:hidden;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.km-bg{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:52px;
+}
+/* gradient overlay — bottom to top */
+.km-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(7,9,15,0) 25%,
+    rgba(7,9,15,.55) 65%,
+    rgba(7,9,15,.96) 100%
+  );
+}
+/* type badge top-left */
+.km-type{
+  position:absolute;top:10px;left:10px;z-index:2;
+  display:flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;letter-spacing:.7px;
+  padding:3px 8px;border-radius:3px;
+  backdrop-filter:blur(6px);
+}
+.km-video{background:rgba(200,57,45,.28);color:#ff9090;border:1px solid rgba(200,57,45,.38)}
+.km-image{background:rgba(91,127,166,.24);color:#aac8f0;border:1px solid rgba(91,127,166,.34)}
+.km-embed{background:rgba(230,197,90,.2);color:var(--gold);border:1px solid rgba(230,197,90,.32)}
+/* duration badge top-right */
+.km-dur{
+  position:absolute;top:10px;right:10px;z-index:2;
+  font-size:10px;font-weight:700;
+  background:rgba(0,0,0,.58);color:rgba(255,255,255,.7);
+  padding:2px 6px;border-radius:3px;
+  backdrop-filter:blur(4px);
+}
+/* play button (video only) */
+.km-play{
+  position:absolute;z-index:3;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(200,57,45,.82);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;padding-left:2px;
+  border:2px solid rgba(255,255,255,.22);
+  box-shadow:0 4px 18px rgba(200,57,45,.4);
+  transition:transform .2s,box-shadow .2s;
+  opacity:0;
+}
+.kcard:hover .km-play{opacity:1;animation:play-bounce 1.4s ease infinite}
+/* creator strip inside media — bottom */
+.km-creator{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:10px 11px 10px;
+  display:flex;align-items:center;gap:8px;
+}
+.km-ava{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:rgba(200,57,45,.25);border:1.5px solid rgba(200,57,45,.5);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+}
+.km-name{font-size:12px;font-weight:600;color:var(--paper);line-height:1.2}
+.km-grade{font-size:10px;color:rgba(242,239,232,.52)}
+/* ── Card body ── */
+.kb{padding:11px 12px 13px;display:flex;flex-direction:column;gap:7px;flex:1}
+.kb-cat{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+}
+.kb-title{
+  font-size:13px;font-weight:600;color:var(--paper);
+  line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.kb-caption{
+  font-size:11.5px;line-height:1.52;color:var(--p55);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+/* card footer */
+.kb-foot{
+  display:flex;align-items:center;
+  margin-top:auto;padding-top:8px;
+  border-top:1px solid var(--p08);
+  gap:0;
+}
+.kb-stat{
+  display:flex;align-items:center;gap:3px;
+  font-size:11px;color:var(--p35);
+  padding-right:9px;margin-right:9px;
+  border-right:1px solid var(--p08);
+}
+.kb-stat:last-of-type{border-right:none}
+/* follow button on card */
+.kb-follow{
+  margin-left:auto;
+  font-size:11px;font-weight:600;
+  color:var(--red);
+  border:1px solid rgba(200,57,45,.32);
+  padding:3px 10px;border-radius:10px;
+  background:rgba(200,57,45,.06);
+  transition:all .18s;flex-shrink:0;
+}
+.kb-follow:hover,.kb-follow.on{background:var(--red);color:var(--paper);border-color:var(--red)}
+
+/* ═══════════════════════════════════════
+   K2G MODAL
+   ═══════════════════════════════════════ */
+.overlay{
+  position:fixed;inset:0;z-index:400;
+  background:rgba(4,6,12,.88);
+  backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s;
+}
+.overlay.open{opacity:1;pointer-events:auto}
+.modal{
+  background:var(--ink-b);
+  border:1px solid var(--p18);
+  border-radius:14px;
+  width:100%;max-width:500px;
+  max-height:90dvh;
+  overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--p18) transparent;
+  animation:slideUp .32s cubic-bezier(.22,1,.36,1);
+  position:relative;
+}
+/* ── Modal media (9:16 capped) ── */
+.mm{
+  position:relative;
+  width:100%;aspect-ratio:9/16;
+  max-height:380px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.mm-bg{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:80px;
+}
+.mm-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(7,9,15,0) 30%,rgba(13,16,24,.94) 100%);
+}
+/* play button in modal */
+.mm-play{
+  position:absolute;z-index:3;
+  width:60px;height:60px;border-radius:50%;
+  background:rgba(200,57,45,.85);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;padding-left:3px;
+  border:2px solid rgba(255,255,255,.22);
+  box-shadow:0 6px 24px rgba(200,57,45,.45);
+  cursor:pointer;transition:transform .18s,box-shadow .18s;
+}
+.mm-play:hover{transform:scale(1.06);box-shadow:0 8px 28px rgba(200,57,45,.55)}
+/* close button over media */
+.mm-close{
+  position:absolute;top:12px;right:12px;z-index:10;
+  width:32px;height:32px;border-radius:6px;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:rgba(255,255,255,.6);
+  transition:all .15s;cursor:pointer;border:1px solid rgba(255,255,255,.1);
+}
+.mm-close:hover{background:rgba(0,0,0,.7);color:var(--paper)}
+/* ── Modal body ── */
+.mb{padding:16px 20px 20px}
+/* creator row */
+.mb-creator{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:14px;padding-bottom:12px;
+  border-bottom:1px solid var(--p08);
+}
+.mb-ava{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:rgba(200,57,45,.2);border:2px solid rgba(200,57,45,.44);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.mb-name{font-size:14px;font-weight:600;color:var(--paper)}
+.mb-grade{font-size:11px;color:var(--p35);margin-top:1px}
+.mb-follow{
+  margin-left:auto;flex-shrink:0;
+  font-size:12px;font-weight:700;color:var(--red);
+  border:1px solid rgba(200,57,45,.36);
+  padding:5px 14px;border-radius:14px;
+  background:rgba(200,57,45,.07);
+  transition:all .18s;
+}
+.mb-follow:hover,.mb-follow.on{background:var(--red);color:var(--paper);border-color:var(--red)}
+/* title + meta */
+.mb-cat{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.mb-title{
+  font-family:var(--fd);font-size:20px;font-weight:400;
+  line-height:1.2;letter-spacing:-.3px;color:var(--paper);margin-bottom:9px;
+}
+.mb-caption{font-size:13.5px;line-height:1.7;color:var(--p55);margin-bottom:12px}
+/* tags */
+.mb-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.mb-tag{
+  font-size:10.5px;color:var(--p35);
+  background:var(--p04);border:1px solid var(--p08);
+  padding:3px 9px;border-radius:10px;
+}
+/* Ask in G2K */
+.ask-g2k{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;
+  color:rgba(42,107,138,.75);
+  border:1px solid rgba(42,107,138,.22);
+  padding:6px 12px;border-radius:4px;
+  transition:all .18s;margin-bottom:16px;
+}
+.ask-g2k:hover{background:rgba(42,107,138,.1);border-color:var(--g2k);color:var(--g2k)}
+.ask-g2k svg{flex-shrink:0}
+/* ── Comments block ── */
+.cm-block{border-top:1px solid var(--p08);padding-top:14px}
+.cm-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;
+}
+.cm-title{font-size:13px;font-weight:600;color:var(--paper)}
+.cm-policy{
+  font-size:10px;color:var(--p35);
+  background:var(--p04);border:1px solid var(--p08);
+  padding:2px 7px;border-radius:3px;letter-spacing:.3px;
+}
+/* single comment */
+.cm-row{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:9px 0;
+  border-bottom:1px solid var(--p08);
+}
+.cm-row:last-child{border-bottom:none}
+.cm-ava{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  background:var(--ink-d);
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+}
+.cm-name{
+  font-size:11px;font-weight:600;color:var(--paper);
+  margin-bottom:2px;display:flex;align-items:center;gap:6px;
+}
+.cm-grade{font-size:10px;color:var(--p35);font-weight:400}
+/* no-reply pill */
+.no-reply{
+  font-size:9.5px;color:var(--p35);
+  border:1px solid var(--p08);padding:1px 6px;border-radius:3px;
+  margin-left:auto;white-space:nowrap;
+}
+.cm-text{font-size:12px;line-height:1.52;color:var(--p55)}
+.cm-note{
+  font-size:10px;color:rgba(242,239,232,.22);
+  font-style:italic;text-align:center;
+  padding:8px 0 2px;border-top:1px dashed var(--p08);
+  margin-top:4px;
+}
+
+/* ── Stats row ── */
+.mb-stats{
+  display:flex;align-items:center;gap:14px;
+  padding:10px 0 12px;
+  border-bottom:1px solid var(--p08);
+  margin-bottom:14px;
+}
+.mb-stat{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--p55)}
+.mb-stat strong{color:var(--paper);font-weight:600}
+
+/* empty state */
+.empty{
+  grid-column:1/-1;text-align:center;
+  padding:72px 24px;
+  color:var(--p35);font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAVBAR ════ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-k">K</span><span class="logo-sep">—</span><span class="logo-n">Agora</span>
+    </a>
+    <div class="nav-crumb">
+      <span class="nav-crumb-sep">/</span>
+      <span class="nav-crumb-cur">K2G</span>
+    </div>
+    <div class="nav-right">
+      <button class="lang-sw" onclick="toggleLang()">
+        <span id="ln-en" class="on">EN</span><span class="lsep"></span><span id="ln-ko">한</span>
+      </button>
+      <a href="/signin" class="btn-si" id="btn-si">Sign In</a>
+      <a href="/about#korean" class="btn-korean" id="btn-korean">
+        <span>🇰🇷</span><span id="btn-k-lbl">I'm Korean</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-scanline"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag"><span class="hero-tag-dot"></span><span id="h-tag">K2G · Korean → Global</span></div>
+      <h1 class="hero-h" id="h-title">Koreans <em>Explain</em> Korea</h1>
+      <p class="hero-sub" id="h-sub">Short explainers from Korean contributors. Culture, history, and everyday life — directly from the inside. Not AI. Not tourism content.</p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-n">1,204</span><span class="hstat-l" id="hs-v">Explainers<br>published</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n">312</span><span class="hstat-l" id="hs-c">Korean<br>creators</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n">🌏</span><span class="hstat-l" id="hs-r">Global<br>audience</span></div>
+      </div>
+    </div>
+    <div class="hero-pillars">
+      <div class="pillar"><span class="pillar-icon">🎬</span><span id="pi-1">Short video · 60s or under</span><span class="pillar-check">✓</span></div>
+      <div class="pillar"><span class="pillar-icon">🖼</span><span id="pi-2">Image + caption</span><span class="pillar-check">✓</span></div>
+      <div class="pillar"><span class="pillar-icon">🚫</span><span id="pi-3">No ads · No TikTok embeds</span><span class="pillar-check">✓</span></div>
+      <div class="pillar"><span class="pillar-icon">💬</span><span id="pi-4">Single-level comments only</span><span class="pillar-check">✓</span></div>
+    </div>
+  </div>
+  <div class="hero-deco" aria-hidden="true">說</div>
+</section>
+
+<!-- ════ CONTROLS ════ -->
+<div class="controls">
+  <div class="cat-pills" id="cat-pills"></div>
+  <div class="controls-right">
+    <button class="follow-toggle" id="follow-toggle" onclick="toggleFollowing()">
+      <span id="ft-icon">★</span><span id="ft-lbl">Following</span>
+    </button>
+    <div class="sort-row">
+      <button class="sort-btn on" onclick="setSort(this,'recent')" id="st-r">Recent</button>
+      <button class="sort-btn"   onclick="setSort(this,'popular')" id="st-p">Popular</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FEED ════ -->
+<div class="feed-wrap">
+  <div class="feed-grid" id="feed"></div>
+</div>
+
+<!-- ════ MODAL ════ -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   K-AGORA · K2G PAGE
+   ══════════════════════════════════════ */
+
+/* ── Categories ── */
+const CATS = [
+  {id:'all',     icon:'✦', en:'All',      ko:'전체'},
+  {id:'culture', icon:'🎎', en:'Culture',  ko:'문화'},
+  {id:'society', icon:'🏛', en:'Society',  ko:'사회'},
+  {id:'history', icon:'📜', en:'History',  ko:'역사'},
+  {id:'kpop',    icon:'🎵', en:'K-Pop',    ko:'K-팝'},
+  {id:'life',    icon:'🌱', en:'Daily Life',ko:'일상'},
+];
+
+const CAT_COLORS = {
+  culture:'#E6C55A', society:'#6BC4E8', history:'#C8B89A',
+  kpop:'#D4A0E0', life:'#A0C4E0',
+};
+
+/* ── Post data ── */
+const POSTS = [
+  {id:1, cat:'culture', type:'video', dur:'0:58',
+   creator:'MinJun_K', creator_flag:'🇰🇷', creator_grade:'Korean Ambassador',
+   media_bg:'linear-gradient(145deg,#180828,#2e1848)', media_emoji:'🎎',
+   title_en:'Why Koreans bow — and when not to',
+   title_ko:'한국인이 절하는 이유 — 그리고 하지 말아야 할 때',
+   caption_en:"Bowing in Korea isn't just politeness — it's a full grammar of respect. The angle, the duration, who goes first. Let me break it down properly.",
+   caption_ko:"한국에서 인사는 단순한 예의가 아닙니다 — 존중의 문법입니다. 각도, 시간, 누가 먼저. 제대로 설명해 드리겠습니다.",
+   tags_en:['#etiquette','#culture','#Confucianism','#daily'],
+   tags_ko:['#예절','#문화','#유교','#일상'],
+   likes:1240, views:8400, comments_count:34,
+   comments:[
+     {flag:'🇺🇸',name:'Jake_Boston',   grade_en:'Citizen 🇺🇸',grade_ko:'시민 🇺🇸',
+      en:"Fascinating — so the 90-degree bow is genuinely reserved for formal occasions only?",ko:"매력적입니다 — 90도 인사는 공식적인 자리에서만?"},
+     {flag:'🇩🇪',name:'HannaMueller',  grade_en:'Citizen 🇩🇪',grade_ko:'시민 🇩🇪',
+      en:"I made an awkward bow to my Korean colleague last week. Now I understand why it felt strange.",ko:"지난 주 한국인 동료에게 어색하게 절했습니다. 이제 왜 이상했는지 이해합니다."},
+     {flag:'🇧🇷',name:'CarlosRio',     grade_en:'Newbie',grade_ko:'뉴비',
+      en:"Does the depth of the bow change depending on age difference vs. professional rank?",ko:"나이 차이와 직급에 따라 인사의 깊이가 달라지나요?"},
+   ]},
+  {id:2, cat:'history', type:'image', dur:null,
+   creator:'SunYi_Seoul', creator_flag:'🇰🇷', creator_grade:'Korean Ambassador',
+   media_bg:'linear-gradient(145deg,#0d1a10,#182e1a)', media_emoji:'🏯',
+   title_en:'The Joseon Dynasty in 60 seconds',
+   title_ko:'60초로 보는 조선왕조',
+   caption_en:"500 years. 27 kings. Confucian governance that shaped everything from family structure to education. Here's what you actually need to know.",
+   caption_ko:"500년. 27명의 왕. 가족 구조부터 교육까지 모든 것을 형성한 유교 통치. 실제로 알아야 할 것들입니다.",
+   tags_en:['#history','#Joseon','#Confucianism','#dynasty'],
+   tags_ko:['#역사','#조선','#유교','#왕조'],
+   likes:892, views:5200, comments_count:21,
+   comments:[
+     {flag:'🇬🇧',name:'LondonMark', grade_en:'Citizen 🇬🇧',grade_ko:'시민 🇬🇧',
+      en:"This is exactly the context I was missing for understanding K-dramas.",ko:"K-드라마를 이해하는 데 필요한 맥락이 바로 이것입니다."},
+     {flag:'🇫🇷',name:'ChloeP',     grade_en:'Citizen 🇫🇷',grade_ko:'시민 🇫🇷',
+      en:"The Confucian influence is so visible in modern Korea too — the hierarchy, the education obsession.",ko:"유교적 영향이 현대 한국에서도 분명히 보입니다 — 위계질서, 교육 집착."},
+   ]},
+  {id:3, cat:'life', type:'video', dur:'0:45',
+   creator:'JiYeon_Busan', creator_flag:'🇰🇷', creator_grade:'Korean Ambassador',
+   media_bg:'linear-gradient(145deg,#0e1a0a,#1a2e12)', media_emoji:'🍱',
+   title_en:'What Koreans actually eat for breakfast',
+   title_ko:'한국인이 실제로 아침에 먹는 것',
+   caption_en:"Not ramen. Not always rice either. Korean breakfast is more varied than people think — from doenjang jjigae to toast from a street cart.",
+   caption_ko:"라면이 아닙니다. 항상 밥도 아닙니다. 한국 아침식사는 생각보다 다양합니다.",
+   tags_en:['#food','#dailylife','#hansik','#breakfast'],
+   tags_ko:['#음식','#일상','#한식','#아침'],
+   likes:2105, views:14800, comments_count:67,
+   comments:[
+     {flag:'🇯🇵',name:'YukiT',     grade_en:'Citizen 🇯🇵',grade_ko:'시민 🇯🇵',
+      en:"The street toast cart culture was a surprise! We have morning food culture in Japan too but different.",ko:"토스트 카트 문화는 놀라웠습니다!"},
+     {flag:'🇺🇸',name:'SarahNY',   grade_en:'Citizen 🇺🇸',grade_ko:'시민 🇺🇸',
+      en:"So Korean breakfast is actually quite personal and varies a lot?",ko:"한국 아침식사는 개인마다 꽤 다른가요?"},
+     {flag:'🇮🇳',name:'PriyaM',    grade_en:'Newbie',grade_ko:'뉴비',
+      en:"Love how food culture shows so much about daily life structure in a country.",ko:"음식 문화가 나라의 일상 구조에 대해 얼마나 많은 것을 보여주는지 좋아합니다."},
+   ]},
+  {id:4, cat:'society', type:'video', dur:'1:00',
+   creator:'TaeHoK', creator_flag:'🇰🇷', creator_grade:'Korean Ambassador',
+   media_bg:'linear-gradient(145deg,#0e0e1e,#161628)', media_emoji:'🎓',
+   title_en:'Why Korean students study so much — the real reason',
+   title_ko:'한국 학생들이 왜 그렇게 공부를 많이 하는가 — 진짜 이유',
+   caption_en:"The answer isn't just 'culture'. It's economics, Confucian values, demographic pressure, and one exam that can define your life. The 수능 explained.",
+   caption_ko:"답은 단순히 '문화'가 아닙니다. 경제, 유교 가치, 인구 압력, 그리고 인생을 결정하는 하나의 시험 — 수능 설명.",
+   tags_en:['#education','#society','#suneung','#CSAT'],
+   tags_ko:['#교육','#사회','#수능'],
+   likes:3420, views:22000, comments_count:112,
+   comments:[
+     {flag:'🇨🇳',name:'WeiL',    grade_en:'Citizen 🇨🇳',grade_ko:'시민 🇨🇳',
+      en:"Gaokao in China has the exact same dynamic. The structural explanation here is really accurate.",ko:"중국의 가오카오도 정확히 같은 역학입니다."},
+     {flag:'🇫🇷',name:'TheoB',   grade_en:'Citizen 🇫🇷',grade_ko:'시민 🇫🇷',
+      en:"The economic framing is key — it's not just 'Koreans work hard', there's a structural reason for the pressure.",ko:"경제적 구도가 핵심입니다. '한국인이 열심히 한다'가 아니라 구조적 이유가 있습니다."},
+   ]},
+  {id:5, cat:'culture', type:'video', dur:'0:52',
+   creator:'HaNeul_K', creator_flag:'🇰🇷', creator_grade:'Korean Ambassador',
+   media_bg:'linear-gradient(145deg,#1e1408,#2e1e0a)', media_emoji:'🎋',
+   title_en:'Chuseok vs. Lunar New Year — what\'s the difference?',
+   title_ko:'추석 vs. 설날 — 무엇이 다를까?',
+   caption_en:"Both are huge Korean holidays, but they mean very different things. One is about harvest and ancestors, the other about the new year and luck. The confusion is understandable.",
+   caption_ko:"둘 다 큰 한국 명절이지만 다른 의미를 가집니다. 하나는 수확과 조상에 관한 것이고, 다른 하나는 새해와 행운에 관한 것입니다.",
+   tags_en:['#Chuseok','#Seollal','#holidays','#tradition'],
+   tags_ko:['#추석','#설날','#명절','#전통'],
+   likes:1560, views:9800, comments_count:43,
+   comments:[
+     {flag:'🇺🇸',name:'AmyK',    grade_en:'Citizen 🇺🇸',grade_ko:'시민 🇺🇸',
+      en:"I always mixed these up. This cleared everything up perfectly.",ko:"항상 헷갈렸는데. 이제 완전히 이해됐습니다."},
+     {flag:'🇵🇱',name:'MagdaW',  grade_en:'Newbie',grade_ko:'뉴비',
+      en:"The ancestor remembrance aspect of Chuseok sounds similar to Polish Zaduszki.",ko:"추석의 조상 추모 측면이 폴란드의 Zaduszki와 비슷하게 들립니다."},
+   ]},
+  {id:6, cat:'kpop', type:'image', dur:null,
+   creator:'KPop_Insider', creator_flag:'🇰🇷', creator_grade:'Citizen 🇰🇷',
+   media_bg:'linear-gradient(145deg,#1e0828,#2e0e3e)', media_emoji:'🎤',
+   title_en:'How Korean idol trainees are actually trained',
+   title_ko:'한국 아이돌 연습생이 실제로 훈련받는 방법',
+   caption_en:"Years of vocal, dance, language, and performance training before debut. The system is far more demanding — and nuanced — than most international fans understand.",
+   caption_ko:"데뷔 전 수년간의 보컬, 댄스, 언어, 퍼포먼스 훈련. 시스템은 대부분의 국제 팬들이 이해하는 것보다 훨씬 더 까다롭습니다.",
+   tags_en:['#kpop','#idol','#training','#entertainment'],
+   tags_ko:['#케이팝','#아이돌','#훈련','#엔터테인먼트'],
+   likes:2780, views:18600, comments_count:88,
+   comments:[
+     {flag:'🇹🇭',name:'PloyT',    grade_en:'Citizen 🇹🇭',grade_ko:'시민 🇹🇭',
+      en:"The reality check here is important — a lot of fans romanticize the trainee system.",ko:"현실 직시가 중요합니다 — 많은 팬들이 연습생 시스템을 낭만화합니다."},
+     {flag:'🇲🇾',name:'AzharM',  grade_en:'Newbie',grade_ko:'뉴비',
+      en:"I had no idea about the language requirements. Multiple languages at debut is intense.",ko:"언어 요구사항에 대해 몰랐습니다. 데뷔 시 여러 언어는 정말 대단합니다."},
+   ]},
+  {id:7, cat:'history', type:'video', dur:'0:55',
+   creator:'Prof_HanK', creator_flag:'🇰🇷', creator_grade:'Korean Ambassador',
+   media_bg:'linear-gradient(145deg,#0e1420,#141e2e)', media_emoji:'📜',
+   title_en:'The Korean War — what Koreans actually think about it',
+   title_ko:'한국전쟁 — 한국인들이 실제로 어떻게 생각하는가',
+   caption_en:"Not the international textbook version. This is how it lives in Korean collective memory, how it's taught, and why the wounds are still present in everyday life.",
+   caption_ko:"국제 교과서 버전이 아닙니다. 한국의 집단 기억 속에 어떻게 살아있는지, 어떻게 가르치는지, 왜 상처가 여전히 일상 속에 있는지에 관한 것입니다.",
+   tags_en:['#history','#KoreanWar','#memory','#society'],
+   tags_ko:['#역사','#한국전쟁','#기억','#사회'],
+   likes:4100, views:28000, comments_count:142,
+   comments:[
+     {flag:'🇦🇺',name:'BenOz',    grade_en:'Citizen 🇦🇺',grade_ko:'시민 🇦🇺',
+      en:"The 'forgotten war' framing is so different from how Koreans experience it. This is exactly the perspective I needed.",ko:"'잊혀진 전쟁' 프레이밍이 한국인들의 경험과 너무 다릅니다."},
+     {flag:'🇺🇸',name:'VetFam_J', grade_en:'Honorary Korean',grade_ko:'명예한국인',
+      en:"My grandfather served in Korea. This gave me so much context I never had from the American side of the story.",ko:"할아버지가 한국에서 복무했습니다. 미국 측 이야기에서는 전혀 몰랐던 맥락을 얻었습니다."},
+   ]},
+  {id:8, cat:'life', type:'image', dur:null,
+   creator:'SeoulLocal_Y', creator_flag:'🇰🇷', creator_grade:'Citizen 🇰🇷',
+   media_bg:'linear-gradient(145deg,#0a1418,#102028)', media_emoji:'🏙',
+   title_en:'Living in a Korean apartment — what foreigners miss',
+   title_ko:'한국 아파트에서 산다는 것 — 외국인들이 모르는 것',
+   caption_en:"Ondol floor heating, the veranda storage, how apartment communities actually work, and why the unit number matters more than the address.",
+   caption_ko:"온돌 바닥 난방, 베란다 수납, 아파트 커뮤니티가 실제로 어떻게 작동하는지, 그리고 왜 호수가 주소보다 더 중요한지.",
+   tags_en:['#dailylife','#apartment','#ondol','#Seoul'],
+   tags_ko:['#일상','#아파트','#온돌','#서울'],
+   likes:1890, views:12400, comments_count:56,
+   comments:[
+     {flag:'🇩🇪',name:'MarkusB',  grade_en:'Citizen 🇩🇪',grade_ko:'시민 🇩🇪',
+      en:"The ondol heating explanation was eye-opening. Explains so much about Korean home design.",ko:"온돌 난방 설명이 눈을 뜨게 했습니다."},
+     {flag:'🇨🇦',name:'SophieT', grade_en:'Newbie',grade_ko:'뉴비',
+      en:"I'm moving to Seoul next year — this is incredibly practical. Thank you.",ko:"내년에 서울로 이사합니다 — 정말 실용적입니다. 감사합니다."},
+   ]},
+];
+
+/* ══ STATE ══ */
+let lang         = 'en';
+let activeCat    = 'all';
+let sortMode     = 'recent';
+let followOnly   = false;
+let subState     = {};   /* creator → bool */
+
+function e() { return lang === 'en'; }
+function T(a,b){ return e()?a:b; }
+
+/* ══ CATEGORIES ══ */
+function renderCats(){
+  const pills = document.getElementById('cat-pills');
+  pills.innerHTML = CATS.map(c=>`
+    <button class="cpill${activeCat===c.id?' on':''}" onclick="setCat('${c.id}')">
+      ${c.icon} ${T(c.en,c.ko)}
+    </button>`).join('');
+}
+function setCat(id){ activeCat=id; renderCats(); renderFeed(); }
+
+/* ══ FEED ══ */
+function renderFeed(){
+  const feed  = document.getElementById('feed');
+  let posts   = activeCat==='all' ? [...POSTS] : POSTS.filter(p=>p.cat===activeCat);
+  if(followOnly) posts = posts.filter(p=>subState[p.creator]);
+  if(!posts.length){
+    feed.innerHTML=`<div class="empty">${T('No content in this category yet.','아직 이 카테고리에 콘텐츠가 없습니다.')}</div>`;
+    return;
+  }
+  feed.innerHTML = posts.map((p,i)=>{
+    const isSubbed = subState[p.creator]||false;
+    const cc       = CAT_COLORS[p.cat]||'#aaa';
+    const catObj   = CATS.find(c=>c.id===p.cat)||{en:p.cat,ko:p.cat};
+    const typeBadge= p.type==='video'
+      ? `<span class="km-type km-video">▶ ${T('VIDEO','영상')}</span>`
+      : p.type==='image'
+      ? `<span class="km-type km-image">🖼 ${T('IMAGE','이미지')}</span>`
+      : `<span class="km-type km-embed">▶ ${T('EMBED','임베드')}</span>`;
+    const durBadge = p.dur ? `<span class="km-dur">${p.dur}</span>` : '';
+    const playBtn  = p.type==='video' ? `<div class="km-play">▶</div>` : '';
+    return `
+      <div class="kcard" style="animation-delay:${i*.055}s" onclick="openModal(${p.id})">
+        <div class="km">
+          <div class="km-bg" style="background:${p.media_bg}">${p.media_emoji}</div>
+          <div class="km-grad"></div>
+          ${typeBadge}
+          ${durBadge}
+          ${playBtn}
+          <div class="km-creator">
+            <div class="km-ava">${p.creator_flag}</div>
+            <div>
+              <div class="km-name">${p.creator}</div>
+              <div class="km-grade">${p.creator_grade}</div>
+            </div>
+          </div>
+        </div>
+        <div class="kb">
+          <span class="kb-cat" style="color:${cc}">${T(catObj.en,catObj.ko)}</span>
+          <h3 class="kb-title">${T(p.title_en,p.title_ko)}</h3>
+          <p class="kb-caption">${T(p.caption_en,p.caption_ko)}</p>
+          <div class="kb-foot">
+            <span class="kb-stat">♥ ${fmtN(p.likes)}</span>
+            <span class="kb-stat">💬 ${p.comments_count}</span>
+            <button class="kb-follow${isSubbed?' on':''}"
+              onclick="event.stopPropagation();toggleSub('${p.creator}',this)">
+              ${isSubbed ? T('Following','팔로잉') : T('Follow','팔로우')}
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function fmtN(n){ return n>=1000?(n/1000).toFixed(1)+'k':n; }
+
+function toggleSub(creator, btn){
+  subState[creator] = !subState[creator];
+  const on = subState[creator];
+  btn.classList.toggle('on', on);
+  btn.textContent = on ? T('Following','팔로잉') : T('Follow','팔로우');
+  /* sync modal button if open */
+  const mb = document.getElementById('mb-follow');
+  if(mb && mb.dataset.creator===creator){
+    mb.classList.toggle('on', on);
+    mb.textContent = on ? T('Following','팔로잉') : T('Follow','팔로우');
+  }
+  if(followOnly) renderFeed();
+}
+
+function setSort(btn, mode){
+  document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  sortMode = mode;
+}
+
+function toggleFollowing(){
+  followOnly = !followOnly;
+  const tog = document.getElementById('follow-toggle');
+  tog.classList.toggle('on', followOnly);
+  renderFeed();
+}
+
+/* ══ MODAL ══ */
+function openModal(id){
+  const p = POSTS.find(x=>x.id===id); if(!p) return;
+  const isSubbed = subState[p.creator]||false;
+  const cc       = CAT_COLORS[p.cat]||'#aaa';
+  const catObj   = CATS.find(c=>c.id===p.cat)||{en:p.cat,ko:p.cat};
+
+  document.getElementById('modal').innerHTML = `
+    <div class="mm" style="background:${p.media_bg}">
+      <div class="mm-bg">${p.media_emoji}</div>
+      <div class="mm-grad"></div>
+      ${p.type==='video'?`<div class="mm-play">▶</div>`:''}
+      <button class="mm-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mb">
+      <div class="mb-creator">
+        <div class="mb-ava">${p.creator_flag}</div>
+        <div>
+          <div class="mb-name">${p.creator}</div>
+          <div class="mb-grade">${p.creator_grade}</div>
+        </div>
+        <button class="mb-follow${isSubbed?' on':''}" id="mb-follow"
+          data-creator="${p.creator}"
+          onclick="toggleSub('${p.creator}',this)">
+          ${isSubbed ? T('Following','팔로잉') : T('Follow','팔로우')}
+        </button>
+      </div>
+
+      <div class="mb-cat">
+        <span style="width:7px;height:7px;border-radius:50%;background:${cc};display:inline-block"></span>
+        <span style="color:${cc}">${T(catObj.en,catObj.ko)}</span>
+      </div>
+      <h2 class="mb-title">${T(p.title_en,p.title_ko)}</h2>
+      <p class="mb-caption">${T(p.caption_en,p.caption_ko)}</p>
+
+      <div class="mb-tags">
+        ${(T(p.tags_en,p.tags_ko)).map(tg=>`<span class="mb-tag">${tg}</span>`).join('')}
+      </div>
+
+      <div class="mb-stats">
+        <span class="mb-stat">♥ <strong>${fmtN(p.likes)}</strong></span>
+        <span class="mb-stat">👁 <strong>${fmtN(p.views)}</strong></span>
+        <span class="mb-stat">💬 <strong>${p.comments_count}</strong></span>
+      </div>
+
+      <!-- Ask in G2K — optional, not a default funnel -->
+      <a href="/g2k" class="ask-g2k">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M6.5 4.5v2.8M6.5 8.8h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        ${T('Have a deeper question? Ask in G2K →','더 깊은 질문이 있으신가요? G2K에서 물어보세요 →')}
+      </a>
+
+      <!-- Comments — single level only -->
+      <div class="cm-block">
+        <div class="cm-hdr">
+          <span class="cm-title">${T(`Comments (${p.comments_count})`,`댓글 (${p.comments_count})`)}</span>
+          <span class="cm-policy">${T('No replies','대댓글 없음')}</span>
+        </div>
+        ${p.comments.map(c=>`
+          <div class="cm-row">
+            <div class="cm-ava">${c.flag}</div>
+            <div style="flex:1">
+              <div class="cm-name">
+                ${c.name}
+                <span class="cm-grade">${T(c.grade_en,c.grade_ko)}</span>
+                <span class="no-reply">${T('no reply','답글없음')}</span>
+              </div>
+              <p class="cm-text">${T(c.en,c.ko)}</p>
+            </div>
+          </div>`).join('')}
+        <p class="cm-note">${T('K2G comments are single-level only. No nested replies.','K2G 댓글은 단일 레벨만 허용됩니다. 대댓글 없음.')}</p>
+      </div>
+    </div>`;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(ev){
+  if(!ev||ev.target===document.getElementById('overlay')){
+    document.getElementById('overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+
+/* ══ STATIC TEXT ══ */
+function updateText(){
+  document.getElementById('h-tag').textContent  = T('K2G · Korean → Global','K2G · 한국인 → 글로벌');
+  document.getElementById('h-title').innerHTML  = T('Koreans <em>Explain</em> Korea','한국인이 <em>설명한다</em>');
+  document.getElementById('h-sub').textContent  = T(
+    'Short explainers from Korean contributors. Culture, history, and everyday life — directly from the inside. Not AI. Not tourism content.',
+    '한국인 기여자들의 짧은 설명 콘텐츠. 문화, 역사, 일상 — 직접 내부에서. AI가 아닙니다.'
+  );
+  document.getElementById('hs-v').innerHTML     = T('Explainers<br>published','게시된<br>설명');
+  document.getElementById('hs-c').innerHTML     = T('Korean<br>creators','한국인<br>크리에이터');
+  document.getElementById('hs-r').innerHTML     = T('Global<br>audience','글로벌<br>시청자');
+  document.getElementById('pi-1').textContent   = T('Short video · 60s or under','짧은 영상 · 60초 이하');
+  document.getElementById('pi-2').textContent   = T('Image + caption','이미지 + 캡션');
+  document.getElementById('pi-3').textContent   = T('No ads · No TikTok embeds','광고 없음 · TikTok 임베드 없음');
+  document.getElementById('pi-4').textContent   = T('Single-level comments only','단일 댓글만 허용');
+  document.getElementById('ft-lbl').textContent = T('Following','팔로잉');
+  document.getElementById('st-r').textContent   = T('Recent','최신');
+  document.getElementById('st-p').textContent   = T('Popular','인기');
+  document.getElementById('btn-si').textContent = T('Sign In','로그인');
+  document.getElementById('btn-k-lbl').textContent = T("I'm Korean",'한국인입니다');
+}
+
+/* ══ LANG ══ */
+function toggleLang(){ setLang(lang==='en'?'ko':'en'); }
+function setLang(l){
+  lang = l;
+  document.getElementById('ln-en').className = l==='en'?'on':'';
+  document.getElementById('ln-ko').className = l==='ko'?'on':'';
+  updateText(); renderCats(); renderFeed();
+}
+
+/* ══ INIT ══ */
+updateText();
+renderCats();
+renderFeed();
+</script>
+</body>
+</html>

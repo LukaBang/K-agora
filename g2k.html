@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>G2K — Ask Real Koreans · K-Agora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   K-AGORA · G2K PAGE
+   Design: Dark editorial, ink + G2K blue
+   ═══════════════════════════════════════ */
+:root{
+  --ink:    #080C13;
+  --ink-b:  #0D1420;
+  --ink-c:  #141E2E;
+  --ink-d:  #1C2A3E;
+  --paper:  #F2EFE8;
+  --p72:    rgba(242,239,232,.72);
+  --p55:    rgba(242,239,232,.55);
+  --p35:    rgba(242,239,232,.35);
+  --p18:    rgba(242,239,232,.18);
+  --p08:    rgba(242,239,232,.08);
+  --p04:    rgba(242,239,232,.04);
+  --g2k:    #2A6B8A;
+  --g2k-b:  rgba(42,107,138,.18);
+  --g2k-c:  rgba(42,107,138,.08);
+  --g2k-d:  rgba(42,107,138,.32);
+  --red:    #C8392D;
+  --teal:   #5B9E8A;
+  --gold:   #E6C55A;
+  --fd:     'DM Serif Display','Noto Serif KR',Georgia,serif;
+  --fk:     'Noto Serif KR',Georgia,serif;
+  --fs:     'DM Sans',system-ui,sans-serif;
+  --nav-h:  58px;
+  --side-w: 260px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fs);
+  background:var(--ink);
+  color:var(--paper);
+  min-height:100dvh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bar-pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ═══════════════════════════════════════
+   NAVBAR (shared shell)
+   ═══════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:200;
+  height:var(--nav-h);display:flex;align-items:center;
+  padding:0 28px;
+  background:rgba(8,12,19,.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--p08);
+}
+.nav-inner{display:flex;align-items:center;width:100%;max-width:1360px;margin:0 auto;gap:0}
+.logo{display:flex;align-items:baseline;gap:1px;flex-shrink:0;margin-right:24px}
+.logo-k{font-family:var(--fd);font-size:20px;font-weight:700;color:var(--red);letter-spacing:-.8px}
+.logo-sep{font-family:var(--fd);font-size:14px;color:var(--ink-d);margin:0 2px}
+.logo-n{font-family:var(--fd);font-size:16px;font-weight:400;color:var(--paper)}
+.nav-crumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--p35)}
+.nav-crumb-sep{color:var(--p18)}
+.nav-crumb-cur{color:var(--g2k);font-weight:600;letter-spacing:.3px}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lang-sw{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:600;letter-spacing:.5px;color:var(--p35);padding:3px 9px;border-radius:20px;border:1px solid var(--p08);transition:border-color .2s}
+.lang-sw:hover{border-color:var(--p18)}
+.lang-sw .on{color:var(--paper)}
+.lsep{width:1px;height:8px;background:var(--p18);margin:0 2px}
+.btn-ask{font-size:12.5px;font-weight:600;color:var(--paper);background:var(--g2k);padding:5px 15px;border-radius:4px;transition:all .18s;display:flex;align-items:center;gap:6px}
+.btn-ask:hover{background:#3080a0;box-shadow:0 3px 12px var(--g2k-d)}
+.btn-si{font-size:12.5px;font-weight:500;color:var(--p55);padding:5px 13px;border-radius:4px;border:1px solid var(--p08);transition:all .15s}
+.btn-si:hover{color:var(--paper);border-color:var(--p18)}
+
+/* ═══════════════════════════════════════
+   PAGE HERO BANNER
+   ═══════════════════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;
+  padding:52px 0 44px;
+  border-bottom:1px solid var(--p08);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 80% 50%,rgba(42,107,138,.2) 0%,transparent 55%),
+    radial-gradient(ellipse at 10% 80%,rgba(27,46,94,.15) 0%,transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--p04) 1px,transparent 1px),linear-gradient(90deg,var(--p04) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.hero-inner{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:0 28px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--g2k);margin-bottom:14px;
+}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--g2k);flex-shrink:0}
+.hero-h{
+  font-family:var(--fd);
+  font-size:clamp(36px,4.2vw,58px);
+  font-weight:400;line-height:1.04;letter-spacing:-1.2px;
+  color:var(--paper);margin-bottom:11px;
+}
+.hero-h em{color:var(--g2k);font-style:italic}
+.hero-sub{
+  font-size:15px;line-height:1.68;color:var(--p55);
+  max-width:560px;margin-bottom:24px;
+}
+.hero-stats{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hstat{display:flex;align-items:center;gap:7px}
+.hstat-n{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--paper)}
+.hstat-l{font-size:11px;color:var(--p35);letter-spacing:.3px;line-height:1.3}
+.hstat-div{width:1px;height:24px;background:var(--p08)}
+/* Floating CJK decoration */
+.hero-deco{position:absolute;right:4%;top:50%;transform:translateY(-50%);font-family:var(--fk);font-size:clamp(80px,10vw,140px);font-weight:700;color:rgba(42,107,138,.06);line-height:1;user-select:none;pointer-events:none}
+
+/* ═══════════════════════════════════════
+   MAIN LAYOUT
+   ═══════════════════════════════════════ */
+.layout{
+  max-width:1360px;margin:0 auto;padding:0 28px;
+  display:grid;
+  grid-template-columns:var(--side-w) 1fr;
+  gap:0;
+  min-height:calc(100dvh - var(--nav-h) - 200px);
+}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+   ═══════════════════════════════════════ */
+.sidebar{
+  padding:32px 24px 32px 0;
+  border-right:1px solid var(--p08);
+  position:sticky;top:var(--nav-h);
+  height:calc(100dvh - var(--nav-h));
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+.sidebar::-webkit-scrollbar{display:none}
+.sb-section{margin-bottom:28px}
+.sb-label{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--p35);margin-bottom:10px;display:block;
+}
+/* Category list */
+.cat-list{display:flex;flex-direction:column;gap:2px}
+.cat-item{
+  display:flex;align-items:center;gap:9px;
+  padding:7px 10px;border-radius:5px;
+  font-size:13px;color:var(--p55);
+  cursor:pointer;transition:all .15s;
+  border:1px solid transparent;
+}
+.cat-item:hover{background:var(--p04);color:var(--paper)}
+.cat-item.on{background:var(--g2k-c);color:var(--paper);border-color:var(--g2k-b)}
+.cat-item-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0}
+.cat-item-name{flex:1}
+.cat-item-count{font-size:11px;color:var(--p35);font-weight:600}
+.cat-item.on .cat-item-count{color:var(--g2k)}
+
+/* Rank legend */
+.rank-list{display:flex;flex-direction:column;gap:6px}
+.rank-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--p55)}
+.rank-badge-sm{
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  padding:2px 7px;border-radius:3px;white-space:nowrap;
+}
+.rb-newbie{background:rgba(91,158,138,.1);color:var(--teal);border:1px solid rgba(91,158,138,.2)}
+.rb-citizen{background:rgba(42,107,138,.1);color:#6BC4E8;border:1px solid rgba(42,107,138,.2)}
+.rb-amb{background:rgba(200,57,45,.1);color:#ff9090;border:1px solid rgba(200,57,45,.2)}
+.rb-hon{background:rgba(230,197,90,.1);color:var(--gold);border:1px solid rgba(230,197,90,.2)}
+
+/* Korean CTA box */
+.sb-korean-box{
+  background:var(--g2k-c);border:1px solid var(--g2k-b);
+  border-radius:8px;padding:14px;
+}
+.sbk-flag{font-size:22px;margin-bottom:8px;display:block}
+.sbk-title{font-family:var(--fd);font-size:15px;font-weight:400;color:var(--paper);margin-bottom:5px}
+.sbk-desc{font-size:12px;color:var(--p55);line-height:1.52;margin-bottom:10px}
+.sbk-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--paper);
+  background:var(--g2k);padding:7px 12px;border-radius:4px;
+  transition:all .18s;
+}
+.sbk-btn:hover{background:#3080a0}
+
+/* ═══════════════════════════════════════
+   FEED COLUMN
+   ═══════════════════════════════════════ */
+.feed-col{
+  padding:28px 0 28px 32px;
+  min-width:0;
+}
+
+/* ── Feed toolbar ── */
+.feed-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;flex-wrap:wrap;gap:12px;
+}
+.feed-count{font-size:13px;color:var(--p35)}
+.feed-count strong{color:var(--paper);font-weight:600}
+.sort-tabs{display:flex;align-items:center;gap:2px;background:var(--p04);border:1px solid var(--p08);border-radius:5px;padding:3px}
+.sort-tab{
+  font-size:12px;font-weight:500;color:var(--p55);
+  padding:4px 12px;border-radius:3px;transition:all .15s;
+}
+.sort-tab.on{background:var(--ink-c);color:var(--paper)}
+
+/* Mobile category pills */
+.cat-pills-mob{display:none;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
+.cat-pills-mob::-webkit-scrollbar{display:none}
+.cpill{
+  flex-shrink:0;font-size:12px;font-weight:500;
+  padding:5px 12px;border-radius:20px;
+  border:1px solid var(--p08);color:var(--p55);
+  transition:all .15s;white-space:nowrap;
+}
+.cpill:hover{border-color:var(--p18);color:var(--paper)}
+.cpill.on{background:var(--g2k-c);border-color:var(--g2k-b);color:var(--paper)}
+@media(max-width:960px){.cat-pills-mob{display:flex}}
+
+/* ── Post grid ── */
+.post-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+@media(max-width:1200px){.post-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px) {.post-grid{grid-template-columns:1fr}}
+
+/* ── Post card ── */
+.pcard{
+  background:var(--ink-b);
+  border:1px solid var(--p08);border-radius:10px;
+  overflow:hidden;cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  animation:fadeUp .38s ease both;
+  display:flex;flex-direction:column;
+}
+.pcard:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+  border-color:var(--p18);
+}
+/* card media */
+.pcard-media{
+  height:90px;position:relative;
+  background:var(--ink-c);
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;overflow:hidden;
+}
+.pcard-media-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 60%,rgba(42,107,138,.22),transparent 65%);
+}
+.pcard-cat-badge{
+  position:absolute;top:8px;left:8px;
+  font-size:10px;font-weight:700;letter-spacing:.6px;
+  padding:3px 8px;border-radius:3px;
+  background:rgba(8,12,19,.65);backdrop-filter:blur(4px);
+  border:1px solid;
+}
+/* card body */
+.pcard-body{padding:13px 14px;flex:1;display:flex;flex-direction:column;gap:8px}
+.pcard-author{display:flex;align-items:center;gap:7px}
+.pcard-ava{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--ink-d);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  flex-shrink:0;
+}
+.pcard-name{font-size:12px;font-weight:500;color:var(--paper)}
+.pcard-grade{font-size:10px;color:var(--p35)}
+.pcard-title{
+  font-size:13.5px;font-weight:600;color:var(--paper);
+  line-height:1.42;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.pcard-preview{
+  font-size:12px;line-height:1.55;color:var(--p55);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+/* top answer */
+.pcard-answer{
+  background:rgba(8,12,19,.55);
+  border-left:2px solid var(--g2k);
+  padding:8px 10px;border-radius:0 5px 5px 0;
+  flex-shrink:0;
+}
+.pa-badge{font-size:10px;font-weight:700;color:var(--g2k);display:block;margin-bottom:3px}
+.pa-text{font-size:11.5px;line-height:1.52;color:var(--p55);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* card footer */
+.pcard-footer{
+  display:flex;align-items:center;gap:10px;
+  padding-top:8px;margin-top:auto;
+  border-top:1px solid var(--p08);
+}
+.pf-stat{font-size:11px;color:var(--p35);display:flex;align-items:center;gap:3px}
+.pf-time{font-size:11px;color:var(--p35);margin-left:auto}
+/* answered badge */
+.pcard-answered{
+  position:absolute;bottom:8px;right:8px;
+  font-size:9px;font-weight:700;letter-spacing:.5px;
+  background:rgba(91,158,138,.18);color:var(--teal);
+  border:1px solid rgba(91,158,138,.28);
+  padding:2px 6px;border-radius:3px;
+}
+
+/* load more */
+.load-more{
+  display:flex;justify-content:center;margin-top:28px;
+}
+.btn-load{
+  font-size:13px;font-weight:500;color:var(--p55);
+  padding:9px 24px;border-radius:5px;
+  border:1px solid var(--p18);
+  transition:all .18s;display:flex;align-items:center;gap:8px;
+}
+.btn-load:hover{color:var(--paper);border-color:var(--g2k);background:var(--g2k-c)}
+
+/* ═══════════════════════════════════════
+   POST MODAL
+   ═══════════════════════════════════════ */
+.overlay{
+  position:fixed;inset:0;z-index:400;
+  background:rgba(5,8,14,.86);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+  opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.overlay.open{opacity:1;pointer-events:auto}
+.modal{
+  background:var(--ink-b);
+  border:1px solid var(--p18);
+  border-radius:14px;
+  width:100%;max-width:680px;
+  max-height:88dvh;
+  overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--p18) transparent;
+  animation:slideUp .32s cubic-bezier(.22,1,.36,1);
+  position:relative;
+}
+/* modal header */
+.modal-hdr{
+  position:sticky;top:0;z-index:10;
+  background:rgba(13,20,32,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--p08);
+  padding:14px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.modal-hdr-left{display:flex;align-items:center;gap:10px}
+.modal-hdr-ava{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--ink-d);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
+}
+.modal-hdr-name{font-size:13px;font-weight:600;color:var(--paper)}
+.modal-hdr-meta{font-size:11px;color:var(--p35)}
+.modal-close{
+  width:30px;height:30px;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:var(--p55);
+  transition:all .15s;
+}
+.modal-close:hover{background:var(--p08);color:var(--paper)}
+/* modal media */
+.modal-media{
+  height:160px;background:var(--ink-c);
+  display:flex;align-items:center;justify-content:center;
+  font-size:64px;position:relative;overflow:hidden;
+}
+.modal-media-overlay{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 60%,rgba(42,107,138,.25),transparent 65%);
+}
+.modal-media::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(to bottom,transparent,var(--ink-b));
+}
+/* modal body */
+.modal-body{padding:20px 24px}
+.modal-cat-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.modal-cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.modal-title{
+  font-family:var(--fd);font-size:22px;font-weight:400;
+  line-height:1.2;letter-spacing:-.3px;color:var(--paper);
+  margin-bottom:14px;
+}
+/* 4-field structured display */
+.q-fields{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.q-field{background:var(--p04);border:1px solid var(--p08);border-radius:7px;padding:11px 13px}
+.q-field-lbl{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--g2k);margin-bottom:5px;display:block;
+}
+.q-field-text{font-size:13px;line-height:1.6;color:var(--p72)}
+
+/* answers block */
+.answers-block{border-top:1px solid var(--p08);padding-top:18px;margin-top:4px}
+.answers-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.answers-title{font-size:14px;font-weight:600;color:var(--paper)}
+.sort-row{display:flex;gap:6px}
+.sort-btn{
+  font-size:11px;font-weight:500;color:var(--p55);
+  padding:4px 10px;border-radius:20px;border:1px solid var(--p08);
+  transition:all .15s;
+}
+.sort-btn.on{background:var(--g2k-c);border-color:var(--g2k-b);color:var(--paper)}
+/* answer card */
+.answer-card{
+  background:var(--ink-c);border:1px solid var(--p08);
+  border-radius:8px;padding:13px 14px;margin-bottom:10px;
+}
+.answer-card.top-answer{border-color:rgba(42,107,138,.3);background:rgba(42,107,138,.06)}
+.ac-top{display:flex;align-items:center;gap:7px;margin-bottom:9px;flex-wrap:wrap}
+.ac-type{
+  font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;
+}
+.type-answer {background:rgba(42,107,138,.18);color:#6BC4E8}
+.type-question{background:rgba(230,197,90,.12);color:var(--gold)}
+.type-context {background:rgba(91,158,138,.12);color:var(--teal)}
+.ac-flag{font-size:13px}
+.ac-name{font-size:12px;font-weight:600;color:var(--paper)}
+.ac-grade{font-size:11px;color:var(--p35)}
+.ac-votes{font-size:11px;color:var(--p55);margin-left:auto}
+.ac-text{font-size:13px;line-height:1.62;color:var(--p72)}
+/* ask-in-g2k cross-link */
+.ask-g2k-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:500;color:rgba(42,107,138,.75);
+  border:1px solid rgba(42,107,138,.22);
+  padding:5px 11px;border-radius:4px;
+  margin-top:6px;transition:all .18s;
+}
+.ask-g2k-link:hover{background:var(--g2k-c);color:var(--g2k);border-color:var(--g2k)}
+
+/* comments toggle */
+.comments-toggle{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:500;color:var(--p55);
+  padding:9px 0;border-top:1px dashed var(--p08);
+  cursor:pointer;margin-top:6px;
+  transition:color .15s;
+}
+.comments-toggle:hover{color:var(--paper)}
+.ct-arr{font-size:10px;transition:transform .2s}
+.comments-toggle.open .ct-arr{transform:rotate(180deg)}
+.comments-area{
+  display:none;padding-top:10px;
+  display:flex;flex-direction:column;gap:0;
+  overflow:hidden;max-height:0;
+  transition:max-height .35s ease;
+}
+.comments-area.open{max-height:400px}
+.comment-row{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:7px 0;border-bottom:1px solid var(--p08);
+}
+.comment-row:last-child{border-bottom:none}
+.cr-ava{width:22px;height:22px;border-radius:50%;background:var(--ink-d);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.cr-name{font-size:11px;font-weight:600;color:var(--paper);margin-bottom:2px}
+.cr-text{font-size:12px;line-height:1.5;color:var(--p55)}
+
+/* ═══════════════════════════════════════
+   ASK MODAL (Submit Question)
+   ═══════════════════════════════════════ */
+.ask-modal{
+  background:var(--ink-b);
+  border:1px solid var(--p18);
+  border-radius:14px;
+  width:100%;max-width:620px;
+  max-height:90dvh;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--p18) transparent;
+  animation:slideUp .3s cubic-bezier(.22,1,.36,1);
+}
+.ask-hdr{
+  padding:18px 22px 14px;
+  border-bottom:1px solid var(--p08);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.ask-hdr-title{font-family:var(--fd);font-size:20px;font-weight:400;color:var(--paper);letter-spacing:-.2px}
+.ask-hdr-sub{font-size:12px;color:var(--p55);margin-top:2px}
+.ask-body{padding:20px 22px}
+/* step indicator */
+.ask-steps{display:flex;align-items:center;gap:6px;margin-bottom:22px}
+.astep{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;letter-spacing:.4px;color:var(--p35);
+}
+.astep-n{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--p08);border:1px solid var(--p18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:var(--p55);
+  flex-shrink:0;transition:all .2s;
+}
+.astep.done .astep-n{background:var(--g2k);border-color:var(--g2k);color:var(--paper)}
+.astep.cur  .astep-n{border-color:var(--g2k);color:var(--g2k)}
+.astep-line{flex:1;height:1px;background:var(--p08);margin:0 2px}
+/* form field */
+.ask-field{margin-bottom:16px}
+.ask-label{
+  display:flex;align-items:baseline;gap:7px;
+  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--g2k);margin-bottom:7px;
+}
+.ask-label-hint{font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--p35)}
+.ask-input{
+  width:100%;background:var(--ink-c);
+  border:1px solid var(--p18);border-radius:6px;
+  padding:10px 13px;
+  font-size:13.5px;color:var(--paper);font-family:var(--fs);
+  resize:vertical;outline:none;
+  transition:border-color .18s,box-shadow .18s;
+  line-height:1.55;
+}
+.ask-input::placeholder{color:var(--p35)}
+.ask-input:focus{border-color:var(--g2k);box-shadow:0 0 0 3px rgba(42,107,138,.12)}
+.ask-char{font-size:10px;color:var(--p35);text-align:right;margin-top:4px}
+/* category select */
+.ask-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:4px}
+.ask-cat-btn{
+  font-size:12px;font-weight:500;
+  padding:7px 6px;border-radius:5px;text-align:center;
+  border:1px solid var(--p08);color:var(--p55);
+  transition:all .15s;
+}
+.ask-cat-btn:hover{border-color:var(--p18);color:var(--paper)}
+.ask-cat-btn.sel{background:var(--g2k-c);border-color:var(--g2k-b);color:var(--paper)}
+/* form footer */
+.ask-footer{
+  padding:14px 22px 18px;
+  border-top:1px solid var(--p08);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.ask-note{font-size:11px;color:var(--p35);line-height:1.5;max-width:300px}
+.ask-submit{
+  font-size:13px;font-weight:600;color:var(--paper);
+  background:var(--g2k);padding:9px 20px;border-radius:5px;
+  transition:all .2s;display:flex;align-items:center;gap:7px;
+}
+.ask-submit:hover{background:#3080a0;box-shadow:0 4px 14px var(--g2k-d)}
+.ask-submit:disabled{opacity:.5;pointer-events:none}
+
+/* ── Success state ── */
+.ask-success{
+  padding:40px 22px;text-align:center;
+  animation:fadeIn .4s ease;
+}
+.ask-success-icon{font-size:48px;margin-bottom:16px;display:block}
+.ask-success-title{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--paper);margin-bottom:8px}
+.ask-success-sub{font-size:14px;line-height:1.6;color:var(--p55)}
+</style>
+</head>
+<body>
+
+<!-- ════ NAVBAR ════ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-k">K</span><span class="logo-sep">—</span><span class="logo-n">Agora</span>
+    </a>
+    <div class="nav-crumb">
+      <span class="nav-crumb-sep">/</span>
+      <span class="nav-crumb-cur" id="nc-cur">G2K</span>
+    </div>
+    <div class="nav-right">
+      <button class="lang-sw" onclick="toggleLang()">
+        <span id="ln-en" class="on">EN</span><span class="lsep"></span><span id="ln-ko">한</span>
+      </button>
+      <a href="/signin" class="btn-si" id="btn-si">Sign In</a>
+      <button class="btn-ask" onclick="openAsk()" id="btn-ask">
+        <span>+</span><span id="btn-ask-lbl">Ask a Question</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-tag-dot"></span><span id="h-tag">G2K · Global → Korean</span></div>
+    <h1 class="hero-h" id="h-title">Ask <em>Real</em> Koreans</h1>
+    <p class="hero-sub" id="h-sub">Structure your question. A Korean with real cultural knowledge will answer.<br>Not AI. Not search results. Real perspective from real people.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-n">2,841</span><span class="hstat-l" id="hs-q">Questions<br>answered</span></div>
+      <div class="hstat-div"></div>
+      <div class="hstat"><span class="hstat-n">847</span><span class="hstat-l" id="hs-k">Korean<br>contributors</span></div>
+      <div class="hstat-div"></div>
+      <div class="hstat"><span class="hstat-n">91%</span><span class="hstat-l" id="hs-r">Response<br>rate</span></div>
+    </div>
+  </div>
+  <div class="hero-deco" aria-hidden="true">問</div>
+</section>
+
+<!-- ════ LAYOUT ════ -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <!-- Categories -->
+    <div class="sb-section">
+      <span class="sb-label" id="sb-cat-lbl">Categories</span>
+      <div class="cat-list" id="cat-list"></div>
+    </div>
+    <!-- Rank legend -->
+    <div class="sb-section">
+      <span class="sb-label" id="sb-rank-lbl">Answer Badges</span>
+      <div class="rank-list">
+        <div class="rank-row"><span class="rank-badge-sm rb-amb">🇰🇷 Korean Ambassador</span></div>
+        <div class="rank-row"><span class="rank-badge-sm rb-hon">🏅 Honorary Korean</span></div>
+        <div class="rank-row"><span class="rank-badge-sm rb-citizen">Citizen</span> <span id="rl-c">+ flag</span></div>
+        <div class="rank-row"><span class="rank-badge-sm rb-newbie" id="rl-n">Community member</span></div>
+      </div>
+    </div>
+    <!-- Korean CTA -->
+    <div class="sb-section">
+      <div class="sb-korean-box">
+        <span class="sbk-flag">🇰🇷</span>
+        <div class="sbk-title" id="sbk-t">한국인이신가요?</div>
+        <div class="sbk-desc" id="sbk-d">Your answers shape how the world understands Korea. Join as a Korean contributor.</div>
+        <a href="/about#korean" class="sbk-btn" id="sbk-btn">I'm Korean →</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- FEED COLUMN -->
+  <div class="feed-col">
+
+    <!-- Mobile category pills -->
+    <div class="cat-pills-mob" id="cat-pills-mob"></div>
+
+    <!-- Toolbar -->
+    <div class="feed-toolbar">
+      <span class="feed-count" id="feed-count"><strong>2,841</strong> questions</span>
+      <div class="sort-tabs">
+        <button class="sort-tab on" onclick="setSort(this,'top')"    id="st-top">Top</button>
+        <button class="sort-tab"    onclick="setSort(this,'recent')" id="st-new">Recent</button>
+        <button class="sort-tab"    onclick="setSort(this,'unanswered')" id="st-un">Unanswered</button>
+      </div>
+    </div>
+
+    <!-- Post grid -->
+    <div class="post-grid" id="post-grid"></div>
+
+    <!-- Load more -->
+    <div class="load-more">
+      <button class="btn-load" id="btn-load">
+        <span id="bl-txt">Load more</span>
+        <span>↓</span>
+      </button>
+    </div>
+
+  </div><!-- /feed-col -->
+</div><!-- /layout -->
+
+<!-- ════ POST MODAL ════ -->
+<div class="overlay" id="post-overlay" onclick="closePost(event)">
+  <div class="modal" id="post-modal"></div>
+</div>
+
+<!-- ════ ASK MODAL ════ -->
+<div class="overlay" id="ask-overlay" onclick="closeAsk(event)">
+  <div class="ask-modal" id="ask-modal">
+    <div class="ask-hdr">
+      <div>
+        <div class="ask-hdr-title" id="am-title">Ask a Question</div>
+        <div class="ask-hdr-sub"  id="am-sub">Structure your question — Korean contributors will answer</div>
+      </div>
+      <button class="modal-close" onclick="closeAsk()">✕</button>
+    </div>
+    <div class="ask-body">
+      <!-- Step indicators -->
+      <div class="ask-steps" id="ask-steps"></div>
+      <!-- Category select -->
+      <div class="ask-field">
+        <div class="ask-label" id="af-cat-lbl">Category <span class="ask-label-hint">— required</span></div>
+        <div class="ask-cat-grid" id="ask-cat-grid"></div>
+      </div>
+      <!-- Field 1 -->
+      <div class="ask-field">
+        <div class="ask-label">Question <span class="ask-label-hint" id="af1h">— what do you want to know?</span></div>
+        <textarea class="ask-input" id="af1" rows="2" maxlength="200" placeholder="Why do Koreans...?" oninput="updateChar(this,'af1c')"></textarea>
+        <div class="ask-char" id="af1c">0 / 200</div>
+      </div>
+      <!-- Field 2 -->
+      <div class="ask-field">
+        <div class="ask-label">Context <span class="ask-label-hint" id="af2h">— background or situation</span></div>
+        <textarea class="ask-input" id="af2" rows="2" maxlength="300" placeholder="I noticed this when..." oninput="updateChar(this,'af2c')"></textarea>
+        <div class="ask-char" id="af2c">0 / 300</div>
+      </div>
+      <!-- Field 3 -->
+      <div class="ask-field">
+        <div class="ask-label">What I know <span class="ask-label-hint" id="af3h">— your current understanding</span></div>
+        <textarea class="ask-input" id="af3" rows="2" maxlength="300" placeholder="I think it might be related to..." oninput="updateChar(this,'af3c')"></textarea>
+        <div class="ask-char" id="af3c">0 / 300</div>
+      </div>
+      <!-- Field 4 -->
+      <div class="ask-field">
+        <div class="ask-label">What I want to understand <span class="ask-label-hint" id="af4h">— the gap you want filled</span></div>
+        <textarea class="ask-input" id="af4" rows="2" maxlength="300" placeholder="Specifically, I'd like to understand..." oninput="updateChar(this,'af4c')"></textarea>
+        <div class="ask-char" id="af4c">0 / 300</div>
+      </div>
+    </div>
+    <div class="ask-footer">
+      <div class="ask-note" id="af-note">Your question will be reviewed and answered by Korean contributors. AI is not involved in answers.</div>
+      <button class="ask-submit" onclick="submitAsk()" id="ask-submit">
+        <span id="as-lbl">Submit Question</span> <span>→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   K-AGORA · G2K PAGE
+   ══════════════════════════════════════ */
+
+/* ── Data ── */
+const CATS = [
+  {id:'all',   icon:'✦', name_en:'All',     name_ko:'전체',    count:2841},
+  {id:'culture', icon:'🎎', name_en:'Culture',  name_ko:'문화',   count:642},
+  {id:'society', icon:'🏛', name_en:'Society',  name_ko:'사회',   count:518},
+  {id:'history', icon:'📜', name_en:'History',  name_ko:'역사',   count:394},
+  {id:'travel',  icon:'✈️', name_en:'Travel',   name_ko:'여행',   count:487},
+  {id:'kpop',    icon:'🎵', name_en:'K-Pop',    name_ko:'K-팝',   count:321},
+  {id:'kdrama',  icon:'🎬', name_en:'K-Drama',  name_ko:'K-드라마',count:286},
+  {id:'life',    icon:'🌱', name_en:'Daily Life',name_ko:'일상',  count:193},
+];
+
+const CAT_COLORS = {
+  culture:'#E6C55A', society:'#6BC4E8', history:'#C8B89A',
+  travel:'#7EC9A0',  kpop:'#D4A0E0',   kdrama:'#E0A0A0', life:'#A0C4E0',
+};
+
+const POSTS = [
+  {id:1, cat:'culture',
+   author:'TravellerAlex', flag:'🇦🇺', grade_en:'Citizen 🇦🇺', grade_ko:'시민 🇦🇺',
+   media:'🏠', media_glow:'rgba(42,107,138,.2)',
+   answered:true, upvotes:342, comments:28, answers:12,
+   time_en:'3h ago', time_ko:'3시간 전',
+   title_en:'Why do Koreans remove shoes when entering a home?',
+   title_ko:'한국인들은 왜 집에서 신발을 벗을까요?',
+   preview_en:"I visited a Korean friend's house and everyone took off their shoes. I want to understand the deeper cultural meaning.",
+   preview_ko:"한국 친구 집을 방문했을 때 모두 신발을 벗었습니다. 더 깊은 문화적 의미를 이해하고 싶습니다.",
+   q_en:"Why do Koreans remove shoes when entering a home?",
+   q_ko:"한국인들은 왜 집에 들어갈 때 신발을 벗을까요?",
+   ctx_en:"I visited a Korean colleague's home last week. The moment I walked in, everyone removed their shoes and there was a dedicated area by the door for this.",
+   ctx_ko:"지난주 한국인 동료의 집을 방문했을 때 모든 사람이 신발을 벗었고 현관에 전용 공간이 있었습니다.",
+   know_en:"I assume it's related to cleanliness, since I've seen similar practices in Japan. But I'm not sure if the Korean version has different cultural roots.",
+   know_ko:"청결과 관련된 것으로 생각했으며 일본에서도 비슷한 관습을 봤습니다. 한국의 경우 다른 문화적 뿌리가 있는지 궁금합니다.",
+   want_en:"I'd specifically like to understand the cultural or historical origin, and whether it's changing in modern apartments.",
+   want_ko:"문화적 또는 역사적 기원, 그리고 현대 아파트에서 변화하고 있는지 구체적으로 이해하고 싶습니다.",
+   top_badge:'🇰🇷 Korean Ambassador',
+   top_en:"Rooted in Confucian cleanliness values — the floor is living space where Koreans sit, eat, and sleep. Both practical and deeply cultural.",
+   top_ko:"유교적 청결 가치에 뿌리를 두고 있습니다. 바닥은 앉고, 먹고, 자는 생활 공간입니다.",
+   answers_data:[
+     {type:'answer', flag:'🇰🇷', name:'SeoulNative_K', grade:'Korean Ambassador',
+      en:"Growing up, every Korean home has a 현관 — a lowered entryway. That architectural detail tells the whole story. The floor isn't just floor, it's the place we live on.",
+      ko:"어린 시절부터 모든 한국 가정에는 현관이 있습니다. 그 건축적 세부사항이 모든 것을 말해줍니다.", votes:89},
+     {type:'context', flag:'🇯🇵', name:'TokyoHana', grade:'Citizen 🇯🇵',
+      en:"Similar in Japan with the genkan concept. Interesting East Asian parallel, though the living-floor habit differs — Korean ondol floor heating is a key reason.",
+      ko:"일본도 현관 개념이 비슷합니다. 한국의 온돌 바닥 난방이 핵심 이유입니다.", votes:34},
+     {type:'question', flag:'🇩🇪', name:'BerlinMueller', grade:'Citizen 🇩🇪',
+      en:"Does this apply equally in modern high-rise apartments? I'm visiting Seoul next month and wondering about etiquette.",
+      ko:"현대 고층 아파트에서도 동일하게 적용되나요?", votes:15},
+   ],
+   comments:[
+     {flag:'🇺🇸', name:'Reader_Jim', text_en:"Really helpful explanation, thank you!", text_ko:"정말 도움이 됐습니다!"},
+     {flag:'🇨🇳', name:'Shanghai_Li', text_en:"Same custom in China but the historical story differs here.", text_ko:"중국도 비슷하지만 역사적 맥락이 다릅니다."},
+   ]},
+  {id:2, cat:'society',
+   author:'Parisian_Lu', flag:'🇫🇷', grade_en:'Citizen 🇫🇷', grade_ko:'시민 🇫🇷',
+   media:'🎖', media_glow:'rgba(200,57,45,.18)',
+   answered:true, upvotes:218, comments:41, answers:19,
+   time_en:'6h ago', time_ko:'6시간 전',
+   title_en:"How does mandatory military service affect Korean men's careers?",
+   title_ko:'군복무는 한국 남성의 경력에 어떤 영향을 미칠까요?',
+   preview_en:"Korean men must serve 18–21 months. I'm curious how companies view this gap and whether it disadvantages young men.",
+   preview_ko:"한국 남성들이 18~21개월 복무해야 합니다. 기업들이 이 공백을 어떻게 보는지 궁금합니다.",
+   q_en:"How does mandatory military service affect Korean men's careers and university trajectories?",
+   q_ko:"의무 군복무는 한국 남성의 경력과 대학 생활에 어떤 영향을 미치나요?",
+   ctx_en:"I understand Korean men between 18–28 must complete 18–21 months of mandatory military service. I'm wondering how this affects their professional development.",
+   ctx_ko:"18~28세 한국 남성이 18~21개월 의무 복무를 해야 한다는 것을 알고 있습니다.",
+   know_en:"I think universities allow deferment, but I'm not sure how companies handle the CV gap.",
+   know_ko:"대학교는 유예를 허용한다고 생각하지만, 회사들이 이력서 공백을 어떻게 처리하는지 모르겠습니다.",
+   want_en:"I want to understand the practical career impact and the social attitude toward the service gap.",
+   want_ko:"실제 경력 영향과 복무 공백에 대한 사회적 태도를 이해하고 싶습니다.",
+   top_badge:'🇰🇷 민간대사',
+   top_en:"Most men serve 18–21 months between ages 18–28. Companies universally understand — it's so normalized it genuinely doesn't disadvantage you.",
+   top_ko:"대부분 18~21개월 복무합니다. 회사들은 보편적으로 이해하며, 완전히 정상화된 현상입니다.",
+   answers_data:[
+     {type:'answer', flag:'🇰🇷', name:'SuhoKim_Seoul', grade:'Korean Ambassador',
+      en:"As someone who served, the main impact is a 1.5–2 year delay. But it's so universal it genuinely doesn't disadvantage you. Companies expect it, HR plans for it.",
+      ko:"복무한 사람으로서 주요 영향은 1.5~2년의 지연입니다. 하지만 너무 보편적이라 불이익이 없습니다.", votes:124},
+     {type:'context', flag:'🇺🇸', name:'NYReader', grade:'Citizen 🇺🇸',
+      en:"BTS members' public service recently raised a lot of international attention on this topic. Was interesting to see the public debate.",
+      ko:"BTS 멤버들의 복무가 최근 많은 국제적 관심을 불러일으켰습니다.", votes:67},
+   ],
+   comments:[
+     {flag:'🇬🇧', name:'LondonPete', text_en:"This is really informative. Thank you!", text_ko:"정말 유익합니다. 감사합니다!"},
+   ]},
+  {id:3, cat:'history',
+   author:'LondonMark', flag:'🇬🇧', grade_en:'Citizen 🇬🇧', grade_ko:'시민 🇬🇧',
+   media:'🏯', media_glow:'rgba(184,134,11,.18)',
+   answered:true, upvotes:189, comments:23, answers:8,
+   time_en:'1d ago', time_ko:'1일 전',
+   title_en:'What was daily life like during the Joseon Dynasty?',
+   title_ko:'조선시대 일상생활은 어땠나요?',
+   preview_en:"K-dramas show elaborate palaces but I'm curious about everyday people — food, clothing, and the social rules.",
+   preview_ko:"K-드라마는 화려한 궁궐을 보여주지만 일반인들의 일상이 궁금합니다.",
+   q_en:"What was daily life like for ordinary people during the Joseon Dynasty?",
+   q_ko:"조선시대 일반 사람들의 일상생활은 어땠나요?",
+   ctx_en:"I've been watching several historical K-dramas and they all show elaborate palace scenes. But I'm curious about what life was like for regular people.",
+   ctx_ko:"조선시대 배경의 K-드라마를 여러 편 봤는데, 모두 화려한 궁궐 장면을 보여줍니다.",
+   know_en:"I know the Joseon period was from 1392–1910 and was heavily influenced by Confucianism.",
+   know_ko:"조선 시대가 1392~1910년이었고 유교의 영향을 크게 받았다는 것을 알고 있습니다.",
+   want_en:"I want to understand what ordinary commoners actually ate, wore, and how strict the class system was in practice.",
+   want_ko:"일반 평민들이 실제로 무엇을 먹고 입었으며 신분 제도가 실제로 얼마나 엄격했는지 이해하고 싶습니다.",
+   top_badge:'🇰🇷 Korean Ambassador',
+   top_en:"Society was organized by a Confucian class system — yangban, chungin, sangmin, cheonmin. Most people were farming commoners living quite modestly.",
+   top_ko:"사회는 유교적 신분 제도로 조직되었습니다. 대부분의 사람들은 농민으로 소박하게 살았습니다.",
+   answers_data:[
+     {type:'answer', flag:'🇰🇷', name:'HistoryProf_K', grade:'Korean Ambassador',
+      en:"The staple was bap (rice) and kimchi for commoners. Meat was rare. Hanbok class distinctions were visible — commoners wore undyed or pale cotton, while nobility wore silk and vivid colours.",
+      ko:"서민들의 주식은 밥과 김치였습니다. 고기는 드물었고 한복으로 계급 구분이 가시적이었습니다.", votes:78},
+     {type:'question', flag:'🇫🇷', name:'Paris_Sophie', grade:'Citizen 🇫🇷',
+      en:"Were there regional differences? I imagine life in coastal areas vs. the capital must have been quite different.",
+      ko:"지역 차이가 있었나요? 해안 지역과 수도의 생활이 상당히 달랐을 것 같습니다.", votes:42},
+   ],
+   comments:[
+     {flag:'🇧🇷', name:'SaoPaulo_Ana', text_en:"This is exactly the context I was missing!", text_ko:"바로 제가 놓치고 있던 맥락입니다!"},
+   ]},
+  {id:4, cat:'kpop',
+   author:'MexicoCity_G', flag:'🇲🇽', grade_en:'Citizen 🇲🇽', grade_ko:'시민 🇲🇽',
+   media:'🎵', media_glow:'rgba(212,160,224,.2)',
+   answered:false, upvotes:94, comments:11, answers:3,
+   time_en:'4h ago', time_ko:'4시간 전',
+   title_en:'Why do K-pop groups have so many members compared to Western bands?',
+   title_ko:'K팝 그룹은 왜 서양 밴드보다 멤버가 많나요?',
+   preview_en:"Groups like NCT and Super Junior have 10–20+ members. How does this model work creatively and commercially?",
+   preview_ko:"NCT와 슈퍼주니어 같은 그룹은 10~20명 이상의 멤버가 있습니다. 이 모델이 어떻게 작동하나요?",
+   q_en:"Why do K-pop groups have so many members?",
+   q_ko:"K팝 그룹은 왜 멤버가 많나요?",
+   ctx_en:"I noticed groups like NCT, SEVENTEEN, and formerly Super Junior have 10, 13, even 20+ members.",
+   ctx_ko:"NCT, 세븐틴, 슈퍼주니어 등이 10명, 13명, 심지어 20명 이상의 멤버를 보유하고 있습니다.",
+   know_en:"I think it might be related to having different roles — rappers, vocalists, dancers. But I'm not sure of the industry logic.",
+   know_ko:"래퍼, 보컬, 댄서 등 다른 역할과 관련이 있을 것 같습니다.",
+   want_en:"I want to understand the creative and business rationale — how do labels profit from large groups?",
+   want_ko:"창의적이고 비즈니스적인 이유를 이해하고 싶습니다. 레이블은 대형 그룹에서 어떻게 수익을 얻나요?",
+   top_badge:'🇰🇷 Korean Ambassador',
+   top_en:"Multiple reasons: differentiated appeal per member, sub-unit flexibility, global fan targeting across different member nationalities.",
+   top_ko:"멤버별 차별화된 매력, 서브유닛 유연성, 다양한 국적의 멤버를 통한 글로벌 팬 타겟팅 등 여러 이유가 있습니다.",
+   answers_data:[
+     {type:'answer', flag:'🇰🇷', name:'IndustryInsider_K', grade:'Korean Ambassador',
+      en:"The idol system is built around differentiated appeal. Every member targets a different fan archetype. Large groups also allow sub-units — mini-groups within the group that keep fans engaged year-round.",
+      ko:"아이돌 시스템은 차별화된 매력을 중심으로 구축됩니다. 모든 멤버는 다른 팬 유형을 대상으로 합니다.", votes:56},
+   ],
+   comments:[]},
+  {id:5, cat:'travel',
+   author:'Sydney_Rachel', flag:'🇦🇺', grade_en:'Citizen 🇦🇺', grade_ko:'시민 🇦🇺',
+   media:'✈️', media_glow:'rgba(124,201,160,.18)',
+   answered:true, upvotes:156, comments:18, answers:7,
+   time_en:'2d ago', time_ko:'2일 전',
+   title_en:'What should I know about Korean food etiquette before visiting?',
+   title_ko:'방문 전에 한국 식사 예절에 대해 무엇을 알아야 하나요?',
+   preview_en:"I'll be in Seoul for two weeks. I've heard pouring your own drink is rude and age matters a lot at the table.",
+   preview_ko:"서울에서 2주를 보낼 예정입니다. 혼자 음료를 따르는 것이 무례하다고 들었습니다.",
+   q_en:"What food and dining etiquette should I know before visiting Korea?",
+   q_ko:"한국 방문 전에 알아야 할 식사 예절은 무엇인가요?",
+   ctx_en:"I'll be spending two weeks in Seoul, including dinners with local contacts and a Korean family.",
+   ctx_ko:"서울에서 2주를 보낼 예정이며, 현지 지인들과의 저녁 식사와 한국 가정 방문이 포함됩니다.",
+   know_en:"I've heard pouring your own drink is considered rude, and that age determines who eats first.",
+   know_ko:"혼자 음료를 따르는 것이 무례하고 나이로 식사 순서가 결정된다고 들었습니다.",
+   want_en:"I want a practical rundown of dos and don'ts so I don't accidentally offend my hosts.",
+   want_ko:"실수로 무례하지 않도록 해야 할 일과 하지 말아야 할 일을 실용적으로 알고 싶습니다.",
+   top_badge:'🇰🇷 Korean Ambassador',
+   top_en:"Key rules: pour for others, not yourself. Wait for the eldest to eat first. Don't stick chopsticks upright in rice. Two-hand receiving is respectful.",
+   top_ko:"핵심 규칙: 자신이 아닌 다른 사람을 위해 따르기. 어르신이 먼저 드실 때까지 기다리기. 밥에 젓가락 꽂지 않기.",
+   answers_data:[
+     {type:'answer', flag:'🇰🇷', name:'FoodieKorea', grade:'Korean Ambassador',
+      en:"The three most important: 1) always pour for others, receive with two hands. 2) Elders eat and drink first. 3) Never stick chopsticks vertically in rice — this is a funeral rite.",
+      ko:"가장 중요한 세 가지: 1) 항상 다른 사람을 위해 따르고 두 손으로 받기. 2) 어르신이 먼저. 3) 밥에 젓가락 꽂지 않기.", votes:112},
+   ],
+   comments:[
+     {flag:'🇺🇸', name:'FirstTimer_US', text_en:"Super helpful before my trip, thank you.", text_ko:"여행 전에 정말 도움이 됐습니다."},
+   ]},
+  {id:6, cat:'life',
+   author:'Berlin_Hans', flag:'🇩🇪', grade_en:'Citizen 🇩🇪', grade_ko:'시민 🇩🇪',
+   media:'🌱', media_glow:'rgba(160,196,224,.18)',
+   answered:false, upvotes:43, comments:5, answers:1,
+   time_en:'7h ago', time_ko:'7시간 전',
+   title_en:'How do Koreans typically celebrate birthdays?',
+   title_ko:'한국인들은 보통 생일을 어떻게 기념하나요?',
+   preview_en:"I know seaweed soup (미역국) is traditional on birthdays — but are there other customs I should know about?",
+   preview_ko:"생일에 미역국이 전통이라는 것을 알고 있습니다. 알아야 할 다른 관습이 있나요?",
+   q_en:"How do Koreans typically celebrate birthdays, and what are the key traditions?",
+   q_ko:"한국인들은 보통 생일을 어떻게 기념하나요?",
+   ctx_en:"My Korean friend's birthday is coming up and I want to celebrate in a way that feels appropriate and thoughtful.",
+   ctx_ko:"한국인 친구의 생일이 다가오고 있어 적절하고 사려 깊은 방식으로 축하하고 싶습니다.",
+   know_en:"I know seaweed soup (미역국) is a birthday tradition. I've also heard that 60th birthdays (환갑) are especially significant.",
+   know_ko:"생일에 미역국이 전통이라는 것을 알고 있습니다. 60번째 생일(환갑)이 특히 중요하다는 것도 들었습니다.",
+   want_en:"I want to know what a typical modern Korean birthday looks like, and whether there are specific gift-giving customs.",
+   want_ko:"현대 한국인의 일반적인 생일이 어떤 모습인지, 선물 관련 특별한 관습이 있는지 알고 싶습니다.",
+   top_badge:'🇰🇷 Korean Ambassador',
+   top_en:"Modern birthday: dinner with close friends, often at a restaurant. The birthday person is often treated. Gifts: gift cards or cash are always appropriate.",
+   top_ko:"현대 생일: 가까운 친구들과의 저녁 식사. 생일인 사람이 대접받는 경우가 많습니다. 선물로는 상품권이나 현금이 적절합니다.",
+   answers_data:[
+     {type:'answer', flag:'🇰🇷', name:'BirthdayK', grade:'Citizen 🇰🇷',
+      en:"Modern Korean birthdays are pretty casual — group dinner, sometimes a small cake. The 돌잔치 (first birthday) and 환갑 (60th) are the truly big celebrations.",
+      ko:"현대 한국 생일은 꽤 캐주얼합니다. 그룹 저녁 식사, 때로는 작은 케이크. 돌잔치(첫 번째 생일)와 환갑(60번째)이 진정으로 큰 행사입니다.", votes:28},
+   ],
+   comments:[]},
+];
+
+/* ══════════════
+   STATE
+   ══════════════ */
+let lang     = 'en';
+let activeCat = 'all';
+let sortMode  = 'top';
+
+function e(){ return lang==='en'; }
+function T(a,b){ return e()?a:b; }
+
+/* ══════════════
+   CATEGORY RENDER
+   ══════════════ */
+function renderCats(){
+  const list   = document.getElementById('cat-list');
+  const mobile = document.getElementById('cat-pills-mob');
+  list.innerHTML = mobile.innerHTML = '';
+  CATS.forEach(c=>{
+    /* sidebar item */
+    const li = document.createElement('div');
+    li.className = `cat-item${activeCat===c.id?' on':''}`;
+    li.onclick   = ()=>{ activeCat=c.id; renderCats(); renderFeed(); };
+    li.innerHTML = `<span class="cat-item-icon">${c.icon}</span><span class="cat-item-name">${T(c.name_en,c.name_ko)}</span><span class="cat-item-count">${c.count.toLocaleString()}</span>`;
+    list.appendChild(li);
+    /* mobile pill */
+    const pill = document.createElement('button');
+    pill.className = `cpill${activeCat===c.id?' on':''}`;
+    pill.textContent = c.icon+' '+T(c.name_en,c.name_ko);
+    pill.onclick = ()=>{ activeCat=c.id; renderCats(); renderFeed(); };
+    mobile.appendChild(pill);
+  });
+}
+
+/* ══════════════
+   FEED RENDER
+   ══════════════ */
+function renderFeed(){
+  const grid   = document.getElementById('post-grid');
+  const count  = document.getElementById('feed-count');
+  const posts  = activeCat==='all' ? POSTS : POSTS.filter(p=>p.cat===activeCat);
+  count.innerHTML = `<strong>${posts.length.toLocaleString()}</strong> ${T('questions','질문')}`;
+
+  if(!posts.length){
+    grid.innerHTML=`<div style="grid-column:1/-1;padding:60px;text-align:center;color:var(--p35);font-size:14px">${T('No questions in this category yet.','아직 이 카테고리에 질문이 없습니다.')}</div>`;
+    return;
+  }
+  const cc = CAT_COLORS;
+  grid.innerHTML = posts.map((p,i)=>`
+    <article class="pcard" style="animation-delay:${i*0.06}s" onclick="openPost(${p.id})">
+      <div class="pcard-media" style="background:radial-gradient(circle at 50% 60%,${p.media_glow},transparent 70%),var(--ink-c)">
+        <span style="position:relative;z-index:1">${p.media}</span>
+        ${p.answered?`<span class="pcard-answered">${T('✓ Answered','✓ 답변완료')}</span>`:''}
+        <span class="pcard-cat-badge" style="color:${cc[p.cat]||'#aaa'};border-color:${cc[p.cat]||'#aaa'}44">
+          ${T(CATS.find(c=>c.id===p.cat)?.name_en||'',CATS.find(c=>c.id===p.cat)?.name_ko||'')}
+        </span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-author">
+          <div class="pcard-ava">${p.flag}</div>
+          <div><div class="pcard-name">${p.author}</div><div class="pcard-grade">${T(p.grade_en,p.grade_ko)}</div></div>
+        </div>
+        <h3 class="pcard-title">${T(p.title_en,p.title_ko)}</h3>
+        <p class="pcard-preview">${T(p.preview_en,p.preview_ko)}</p>
+        <div class="pcard-answer">
+          <span class="pa-badge">${p.top_badge}</span>
+          <p class="pa-text">${T(p.top_en,p.top_ko)}</p>
+        </div>
+        <div class="pcard-footer">
+          <span class="pf-stat">▲ ${p.upvotes}</span>
+          <span class="pf-stat">💬 ${p.comments}</span>
+          <span class="pf-stat">${T(p.answers+' ans',p.answers+'개 답변')}</span>
+          <span class="pf-time">${T(p.time_en,p.time_ko)}</span>
+        </div>
+      </div>
+    </article>`).join('');
+}
+
+function setSort(el, mode){
+  document.querySelectorAll('.sort-tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  sortMode = mode;
+  renderFeed();
+}
+
+/* ══════════════
+   POST MODAL
+   ══════════════ */
+function openPost(id){
+  const p = POSTS.find(x=>x.id===id); if(!p) return;
+  const eh = e();
+  const cc = CAT_COLORS;
+  const catObj = CATS.find(c=>c.id===p.cat)||{name_en:p.cat,name_ko:p.cat};
+
+  document.getElementById('post-modal').innerHTML = `
+    <div class="modal-hdr">
+      <div class="modal-hdr-left">
+        <div class="modal-hdr-ava">${p.flag}</div>
+        <div>
+          <div class="modal-hdr-name">${p.author}</div>
+          <div class="modal-hdr-meta">${T(p.grade_en,p.grade_ko)} · ${T(p.time_en,p.time_ko)}</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closePost()">✕</button>
+    </div>
+    <div class="modal-media" style="background:radial-gradient(circle at 50% 60%,${p.media_glow},transparent 65%),var(--ink-c)">
+      <span style="position:relative;z-index:1">${p.media}</span>
+      <div class="modal-media-overlay"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-cat-tag">
+        <span class="modal-cat-dot" style="background:${cc[p.cat]||'#aaa'}"></span>
+        <span style="color:${cc[p.cat]||'#aaa'}">${T(catObj.name_en,catObj.name_ko)}</span>
+      </div>
+      <h2 class="modal-title">${T(p.title_en,p.title_ko)}</h2>
+      <div class="q-fields">
+        <div class="q-field">
+          <span class="q-field-lbl">${T('Question','질문')}</span>
+          <p class="q-field-text">${T(p.q_en,p.q_ko)}</p>
+        </div>
+        <div class="q-field">
+          <span class="q-field-lbl">${T('Context','맥락')}</span>
+          <p class="q-field-text">${T(p.ctx_en,p.ctx_ko)}</p>
+        </div>
+        <div class="q-field">
+          <span class="q-field-lbl">${T('What I Know','내가 아는 것')}</span>
+          <p class="q-field-text">${T(p.know_en,p.know_ko)}</p>
+        </div>
+        <div class="q-field">
+          <span class="q-field-lbl">${T('What I Want to Understand','이해하고 싶은 것')}</span>
+          <p class="q-field-text">${T(p.want_en,p.want_ko)}</p>
+        </div>
+      </div>
+    </div>
+    <div class="answers-block" style="padding:18px 24px">
+      <div class="answers-hdr">
+        <span class="answers-title">${T('Answers & Discussion','답변 & 토론')} (${p.answers_data.length})</span>
+        <div class="sort-row">
+          <button class="sort-btn on">${T('Best','최선')}</button>
+          <button class="sort-btn">${T('Newest','최신')}</button>
+        </div>
+      </div>
+      ${p.answers_data.map(a=>`
+        <div class="answer-card${a.type==='answer'&&a.votes>50?' top-answer':''}">
+          <div class="ac-top">
+            <span class="ac-type type-${a.type}">${a.type}</span>
+            <span class="ac-flag">${a.flag}</span>
+            <span class="ac-name">${a.name}</span>
+            <span class="ac-grade">${a.grade}</span>
+            <span class="ac-votes">▲ ${a.votes}</span>
+          </div>
+          <p class="ac-text">${T(a.en,a.ko)}</p>
+        </div>`).join('')}
+      ${p.comments.length>0?`
+        <div class="comments-toggle" id="ct-${p.id}" onclick="toggleComments(${p.id})">
+          <span class="ct-arr">▼</span>
+          <span>${T('Show comments','댓글 보기')} (${p.comments.length})</span>
+        </div>
+        <div class="comments-area" id="ca-${p.id}">
+          ${p.comments.map(c=>`
+            <div class="comment-row">
+              <div class="cr-ava">${c.flag}</div>
+              <div><div class="cr-name">${c.name}</div><div class="cr-text">${T(c.text_en,c.text_ko)}</div></div>
+            </div>`).join('')}
+        </div>`:''}
+    </div>`;
+
+  document.getElementById('post-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePost(ev){
+  if(!ev||ev.target===document.getElementById('post-overlay')){
+    document.getElementById('post-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+function toggleComments(id){
+  const tog = document.getElementById(`ct-${id}`);
+  const area = document.getElementById(`ca-${id}`);
+  if(!tog||!area) return;
+  const open = tog.classList.toggle('open');
+  area.classList.toggle('open', open);
+}
+
+/* ══════════════
+   ASK MODAL
+   ══════════════ */
+let selectedCat = null;
+function openAsk(){
+  selectedCat = null;
+  document.querySelectorAll('.ask-cat-btn').forEach(b=>b.classList.remove('sel'));
+  ['af1','af2','af3','af4'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  ['af1c','af2c','af3c','af4c'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent='0 / '+(id==='af1c'?200:300); });
+  renderAskCats();
+  document.getElementById('ask-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeAsk(ev){
+  if(!ev||ev.target===document.getElementById('ask-overlay')){
+    document.getElementById('ask-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+function renderAskCats(){
+  const grid = document.getElementById('ask-cat-grid');
+  grid.innerHTML = CATS.filter(c=>c.id!=='all').map(c=>`
+    <button class="ask-cat-btn" onclick="selectCat('${c.id}',this)">
+      ${c.icon} ${T(c.name_en,c.name_ko)}
+    </button>`).join('');
+}
+function selectCat(id, el){
+  selectedCat = id;
+  document.querySelectorAll('.ask-cat-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function updateChar(el, countId){
+  const max = +el.getAttribute('maxlength');
+  document.getElementById(countId).textContent = `${el.value.length} / ${max}`;
+}
+function submitAsk(){
+  const q = document.getElementById('af1').value.trim();
+  if(!q||!selectedCat){
+    alert(T('Please fill in at least the Question field and select a Category.','질문 필드와 카테고리를 선택해 주세요.')); return;
+  }
+  const body = document.getElementById('ask-modal');
+  body.innerHTML = `
+    <div class="ask-success">
+      <span class="ask-success-icon">✉️</span>
+      <div class="ask-success-title">${T('Question submitted!','질문이 제출되었습니다!')}</div>
+      <p class="ask-success-sub">${T('Your question will be reviewed and answered by Korean contributors.<br>You\'ll be notified when there\'s an answer.','질문이 검토되어 한국인 기여자들이 답변할 예정입니다.<br>답변이 오면 알려드리겠습니다.')}</p>
+    </div>`;
+  setTimeout(closeAsk, 2800);
+}
+
+/* ══════════════
+   STATIC TEXT
+   ══════════════ */
+function updateText(){
+  document.getElementById('nc-cur').textContent    = 'G2K';
+  document.getElementById('h-tag').textContent     = T('G2K · Global → Korean','G2K · 외국인 → 한국인');
+  document.getElementById('h-title').innerHTML     = T('Ask <em>Real</em> Koreans','<em>진짜</em> 한국인에게 묻기');
+  document.getElementById('h-sub').innerHTML       = T('Structure your question. A Korean with real cultural knowledge will answer.<br>Not AI. Not search results. Real perspective from real people.','질문을 구조화하세요. 실제 문화 지식을 가진 한국인이 답변합니다.<br>AI가 아닙니다. 진짜 한국인의 시각입니다.');
+  document.getElementById('hs-q').innerHTML        = T('Questions<br>answered','답변된<br>질문');
+  document.getElementById('hs-k').innerHTML        = T('Korean<br>contributors','한국인<br>기여자');
+  document.getElementById('hs-r').innerHTML        = T('Response<br>rate','응답률');
+  document.getElementById('sb-cat-lbl').textContent= T('Categories','카테고리');
+  document.getElementById('sb-rank-lbl').textContent=T('Answer Badges','답변 배지');
+  document.getElementById('rl-c').textContent      = T('+ flag','+ 국기');
+  document.getElementById('rl-n').textContent      = T('Community member','커뮤니티 멤버');
+  document.getElementById('sbk-t').textContent     = T('Are you Korean?','한국인이신가요?');
+  document.getElementById('sbk-d').textContent     = T('Your answers shape how the world understands Korea. Join as a contributor.','여러분의 답변이 세계가 한국을 이해하는 방식을 만듭니다.');
+  document.getElementById('sbk-btn').textContent   = T("I'm Korean →",'한국인 기여자로 참여 →');
+  document.getElementById('btn-ask-lbl').textContent=T('Ask a Question','질문하기');
+  document.getElementById('btn-si').textContent    = T('Sign In','로그인');
+  document.getElementById('st-top').textContent    = T('Top','인기');
+  document.getElementById('st-new').textContent    = T('Recent','최신');
+  document.getElementById('st-un').textContent     = T('Unanswered','미답변');
+  document.getElementById('bl-txt').textContent    = T('Load more','더 보기');
+  document.getElementById('am-title').textContent  = T('Ask a Question','질문하기');
+  document.getElementById('am-sub').textContent    = T('Structure your question — Korean contributors will answer','질문을 구조화하세요. 한국인 기여자들이 답변합니다');
+  document.getElementById('af-cat-lbl').innerHTML  = T('Category <span class="ask-label-hint">— required</span>','카테고리 <span class="ask-label-hint">— 필수</span>');
+  document.getElementById('af1h').textContent      = T('— what do you want to know?','— 무엇을 알고 싶으신가요?');
+  document.getElementById('af2h').textContent      = T('— background or situation','— 배경 또는 상황');
+  document.getElementById('af3h').textContent      = T('— your current understanding','— 현재 이해');
+  document.getElementById('af4h').textContent      = T('— the gap you want filled','— 채우고 싶은 부분');
+  document.getElementById('af-note').textContent   = T('Your question will be reviewed and answered by Korean contributors. AI is not involved.','질문은 한국인 기여자들이 검토하고 답변합니다. AI는 관여하지 않습니다.');
+  document.getElementById('as-lbl').textContent    = T('Submit Question','질문 제출');
+}
+
+/* ══════════════
+   LANG
+   ══════════════ */
+function toggleLang(){ setLang(lang==='en'?'ko':'en'); }
+function setLang(l){
+  lang = l;
+  document.getElementById('ln-en').className = l==='en'?'on':'';
+  document.getElementById('ln-ko').className = l==='ko'?'on':'';
+  updateText(); renderCats(); renderFeed();
+}
+
+/* ══════════════
+   INIT
+   ══════════════ */
+updateText();
+renderCats();
+renderFeed();
+</script>
+</body>
+</html>
